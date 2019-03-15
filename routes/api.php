@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 
+use App\BlogEntry;
+use App\Http\Resources\BlogEntry as BlogEntryResource;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,4 +18,8 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::get('/blogentries', function () {
+    return BlogEntryResource::collection(BlogEntry::all());
 });

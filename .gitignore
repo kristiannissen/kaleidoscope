@@ -9,3 +9,6 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+database/*.sqlite
+.DS_STORE
+package-lock.json

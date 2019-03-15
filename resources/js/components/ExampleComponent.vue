@@ -1,3 +1,4 @@
+
 <template>
     <div class="container">
         <div class="row justify-content-center">
@@ -18,6 +19,20 @@
     export default {
         mounted() {
             console.log('Component mounted.')
+        },
+        created() {
+            this.fetchData();
+            console.log('Component created')    
+        },
+        data: () => {
+            return {
+                posts: []
+            }
+        },
+        methods: {
+            fetchData() {
+                this.posts = [1,2,3]
+            }
         }
     }
 </script>
