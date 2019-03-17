@@ -40,3 +40,11 @@ Vue.component('blogentrylist', BlogEntryList)
 const app = new Vue({
     el: '#app'
 });
+
+/**
+ * TODO: PushState
+ */
+document.querySelectorAll('a').forEach((node) =>
+    console.log(node)
+)
+

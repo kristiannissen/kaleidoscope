@@ -6,14 +6,11 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
         <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-        <script defer src="/js/manifest.js"></script>
-        <script defer src="/js/vendor.js"></script>
-        <script defer src="/js/app.js"></script>
     </head>
     <body>
         <div id="app" class="mdl-layout__container">
             <div class="mdl-layout mdl-js-layout is-upgraded">
-            <main class="mdl-layout__content">
+            <main class="mdl-layout__content" id="app">
                 @yield('content')
                 <footer class="mdl-mini-footer">
                     <div class="mdl-mini-footer--left-section">left</div>
@@ -22,5 +19,8 @@
             </main>
             </div>
         </div>
+        <script src="/js/manifest.js"></script>
+        <script src="/js/vendor.js"></script>
+        <script src="/js/app.js"></script>
     </body>
 </html>

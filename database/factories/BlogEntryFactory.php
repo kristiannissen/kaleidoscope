@@ -9,5 +9,6 @@ $factory->define(BlogEntry::class, function (Faker $faker) {
         'title' => 'Ground round biltong bacon pastrami',
         'content' => 'Bresaola cow chicken burgdoggen',
         'online' => true,
+        'slug' => 'slug'
     ];
 });

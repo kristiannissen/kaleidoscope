@@ -18,7 +18,9 @@ class BlogEntry extends JsonResource
     {
         return array(
             'title' => $this->title,
-            'content' => $this->content
+            'content' => $this->content,
+            'slug' => '/post/' . $this->slug,
+            'created' => $this->created_at
         );
     }
 }
