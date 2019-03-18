@@ -5,13 +5,6 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-        <script>
-            var user = {
-            'id': '{{ md5(uniqid()) }}',
-            'segment': {},
-            'visits': 0
-            };
-        </script>
         <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     </head>
     <body>

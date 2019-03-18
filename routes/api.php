@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 
 use App\BlogEntry;
 use App\Http\Resources\BlogEntry as BlogEntryResource;
+use App\Http\Controllers\API\AnalyticsController as AnalyticsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/blogentries', function () {
     return BlogEntryResource::collection(BlogEntry::all());
 });
+
+Route::apiResource('/analytics', 'API\AnalyticsController');
