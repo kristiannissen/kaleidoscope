@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('home');
 });
+
+Route::get('/post/{slug}', 'ShowBlogEntry');
