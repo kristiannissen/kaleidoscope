@@ -7,6 +7,7 @@
             <h3>
                 <a v-bind:href="item.slug">{{ item.title }}</a>
             </h3>
+            <p><span>Created: {{ item.created }}</span></p>
         </div> 
     </div>
 </template>
@@ -28,7 +29,23 @@
         },
         computed: {
             slicedList: function () {
-                return this.list.slice(0, 4)
+                return this.list.slice(0, 4).map(function(item) {
+                    var d = new Date(item.created)
+                    return {title: item.title,
+                            created: d.toLocaleDateString(
+                                navigator.language || 'da-DK',
+                                {
+                                    weekday: 'long',
+                                    month: 'long',
+                                    year: 'numeric',
+                                    day: 'numeric'
+                                }
+                            ),
+                            slug: item.slug}
+                })
+            },
+            localDate: function () {
+                return "Hello"
             }
         },
         methods: {
