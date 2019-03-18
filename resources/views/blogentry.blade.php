@@ -12,7 +12,7 @@
                 <p>{{ $content }}</p>
             </div>
             <div class="mdl-card__supporting-text">
-                <relatedblogentrylist />
+                <relatedblogentrylist initialid="{{ $id }}" />
             </div>
         </div>
     </div>

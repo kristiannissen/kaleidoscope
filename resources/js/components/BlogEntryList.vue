@@ -32,6 +32,7 @@
                 var endPoint = '/api/blogentries/'
                 this.http.get(endPoint)
                 .then((response) => this.list = response.data.data)
+                .catch((response) => console.log(response))
             }
         },
         mounted() {

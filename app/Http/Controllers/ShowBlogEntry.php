@@ -20,7 +20,8 @@ class ShowBlogEntry extends Controller
         $blogEntry = BlogEntry::where('slug', '=', $slug)->firstOrFail();
         return view('blogentry', array(
             'title' => $blogEntry->title,
-            'content' => $blogEntry->content
+            'content' => $blogEntry->content,
+            'id' => $blogEntry->id
             )
         );
     }

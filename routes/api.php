@@ -25,4 +25,8 @@ Route::get('/blogentries', function () {
     return BlogEntryResource::collection(BlogEntry::all());
 });
 
+Route::get('/blogentries/{id}/related', function($id = 0) {
+    return BlogEntryResource::collection(BlogEntry::all());
+});
+
 Route::apiResource('/analytics', 'API\AnalyticsController');
