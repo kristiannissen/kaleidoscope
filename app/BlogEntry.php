@@ -23,4 +23,11 @@ class BlogEntry extends Model
             $model->slug = strtolower($text);
         });
     }
+
+    public function scopeLatest($query)
+    {
+        return $query->orderBy('created_at', 'DESC')
+                     ->take(5)
+                     ->get();
+    }
 }

@@ -4,16 +4,16 @@
 
 @section('content')
     <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--8-col">
-            <article>
-                <header>
-                    <h1>{{ $title }}</h1>
-                </header>
-                <p>
-                    {{ $content }}
-                </p>
-            </article>
+        <div class="mdl-cell mdl-cell--8-col blog_entry mdl-card">
+            <div class="mdl-card__title">
+                <h1>{{ $title }}</h1>
+            </div>
+            <div class="mdl-card__supporting-text">
+                <p>{{ $content }}</p>
+            </div>
+            <div class="mdl-card__supporting-text">
+                <relatedblogentrylist />
+            </div>
         </div>
-        <div class="mdl-cell mdl-cell--4-col">here</div>
     </div>
 @endsection
