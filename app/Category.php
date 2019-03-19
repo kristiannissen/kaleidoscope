@@ -4,11 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BlogEntry extends Model
+class Category extends Model
 {
     //
-    protected $table = 'blogentries';
-
     public static function boot()
     {
         parent::boot();
@@ -24,18 +22,8 @@ class BlogEntry extends Model
         });
     }
 
-    public function categories ()
+    public function blogEntries ()
     {
-        return $this->belongsToMany('App\Category');
-    }
-
-    public function scopePopular ($query)
-    {
-        return $query->where('id', '>', 8);
-    }
-
-    public function scopeRelated ($query, $category_id = 0)
-    {
-        return $query->where('id', '>', 1);
+        return $this->belongsToMany('App\BlogEntry');
     }
 }

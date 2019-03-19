@@ -22,11 +22,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/blogentries', function () {
-    return BlogEntryResource::collection(BlogEntry::all());
+    return BlogEntryResource::collection(BlogEntry::popular()->get());
 });
 
 Route::get('/blogentries/{id}/related', function($id = 0) {
-    return BlogEntryResource::collection(BlogEntry::all());
+    return BlogEntryResource::collection(BlogEntry::related($id)->get());
 });
 
 Route::apiResource('/analytics', 'API\AnalyticsController');

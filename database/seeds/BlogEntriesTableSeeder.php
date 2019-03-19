@@ -12,6 +12,12 @@ class BlogEntriesTableSeeder extends Seeder
     public function run()
     {
         //
-        factory(App\BlogEntry::class, 50)->create();
+        factory(App\BlogEntry::class, 50)->create()->each(
+            function ($blogEntry) {
+                $blogEntry->categories()->save(factory(
+                    App\Category::class)->make()
+                );
+            }
+        );
     }
 }
