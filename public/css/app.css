@@ -10664,3 +10664,13 @@ a.text-dark:focus {
   margin: 0 auto;
 }
 
+h1,
+h2,
+h3 {
+  font-family: Cambria, serif;
+}
+
+p {
+  font-size: 16px;
+}
+

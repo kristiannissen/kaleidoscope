@@ -10,6 +10,7 @@
     </head>
     <body>
         <div id="app" class="mdl-layout mdl-js-layout">
+            <!--
             <header class="mdl-layout__header">
                 <div class="mdl-layout__header-row">
                     <span class="mdl-layout-title">Title</span>
@@ -25,6 +26,7 @@
                     <a class="mdl-navigation__link" href="">Link</a>
                 </nav>
             </div>
+            //-->
             <main class="mdl-layout__content" id="app">
                 @yield('content')
                 <footer class="mdl-mini-footer">
