@@ -21,7 +21,8 @@ class ShowBlogEntry extends Controller
         return view('blogentry', array(
             'title' => $blogEntry->title,
             'content' => $blogEntry->content,
-            'id' => $blogEntry->id
+            'id' => $blogEntry->id,
+            'categories' => $blogEntry->categories
             )
         );
     }

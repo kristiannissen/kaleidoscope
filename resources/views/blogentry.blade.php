@@ -10,6 +10,11 @@
             </div>
             <div class="mdl-card__supporting-text">
                 <p>{{ $content }}</p>
+                <div>
+                    @foreach ($categories as $category)
+                        <span>{{ $category->title }}</span>
+                    @endforeach
+                </div>
             </div>
             <div class="mdl-card__supporting-text">
                 <relatedblogentrylist initialid="{{ $id }}" />

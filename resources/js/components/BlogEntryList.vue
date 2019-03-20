@@ -1,23 +1,24 @@
 /**
  * @file BlogEntryList.vue
  */
+
 <template>
-<div class="blogentrylist mdl-grid">
-    <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col" v-for="item in entryList">
-        <div class="mdl-card__title">
-            <h1>
-                <a v-bind:href="item.slug">{{item.title}}</a>
-            </h1>
-        </div>
-        <div class="mdl-card__supporting-text">
-            <p>{{item.content}}</p>
-        </div>
-        <div class="mdl-card__actions actions mdl-card--border">
-            <span>Created: <time v-bind:datetime="item.dateTime">
-                {{item.created}}</time></span>
+    <div class="blogentrylist mdl-grid">
+        <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col" v-for="item in entryList">
+            <div class="mdl-card__title">
+                <h1>
+                    <a v-bind:href="item.slug">{{item.title}}</a>
+                </h1>
+            </div>
+            <div class="mdl-card__supporting-text">
+                <p>{{item.content}}</p>
+            </div>
+            <div class="mdl-card__actions actions mdl-card--border">
+                <span>Created: <time v-bind:datetime="item.dateTime">
+                    {{item.created}}</time></span>
+            </div>
         </div>
     </div>
-</div>
 </template>
 
 <script>

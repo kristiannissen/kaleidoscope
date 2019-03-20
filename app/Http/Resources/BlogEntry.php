@@ -20,7 +20,8 @@ class BlogEntry extends JsonResource
             'title' => $this->title,
             'content' => $this->content,
             'slug' => '/post/' . $this->slug,
-            'created' => $this->created_at
+            'created' => $this->created_at,
+            'categories' => array()
         );
     }
 }

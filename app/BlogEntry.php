@@ -31,7 +31,7 @@ class BlogEntry extends Model
 
     public function scopePopular ($query)
     {
-        return $query->where('id', '>', 8);
+        return $query->where('id', '>', 3);
     }
 
     public function scopeRelated ($query, $category_id = 0)

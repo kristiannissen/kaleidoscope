@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Log;
 
 class BlogEntriesTableSeeder extends Seeder
 {
@@ -14,9 +15,9 @@ class BlogEntriesTableSeeder extends Seeder
         //
         factory(App\BlogEntry::class, 50)->create()->each(
             function ($blogEntry) {
-                $blogEntry->categories()->save(factory(
-                    App\Category::class)->make()
-                );
+                $ids = range(1 ,5);
+                shuffle($ids);
+                $blogEntry->categories()->attach($ids);
             }
         );
     }
