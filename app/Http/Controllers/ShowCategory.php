@@ -24,6 +24,7 @@ class ShowCategory extends Controller
         return view('category', array(
             'name' => $category->name,
             'id' => $category->id,
+            'description' => $category->description,
             'blogentries' => $category->blogentries
         ));
     }

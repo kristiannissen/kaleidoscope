@@ -9,8 +9,9 @@
                 <h1>{{ $name }}</h1>
             </div>
             <div class="mdl-card__supporting-text">
-                <div>
-                </div>
+                <p>
+                    {{ $description }}
+                </p>
             </div>
         </div>
     </div>
