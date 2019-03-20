@@ -32,7 +32,7 @@ Route::get('/blogentries/{id}/related', function($id = 0) {
 Route::apiResource('/analytics', 'API\AnalyticsController');
 
 Route::get('/category/{id}', function ($id = 0) {
-    return App\Category::findOrFail($id)
-        ->withCount('blogentries')
-        ->paginate();
+    $category = App\Category::find($id)
+        ->blogentries();
+    return $category->paginate(5);
 });

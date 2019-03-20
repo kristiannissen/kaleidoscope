@@ -13,6 +13,9 @@
                     {{ $description }}
                 </p>
             </div>
+            <div class="mdl-card__supporting-text">
+                <category-paginator initialid="{{ $id }}" />
+            </div>
         </div>
     </div>
 @endsection

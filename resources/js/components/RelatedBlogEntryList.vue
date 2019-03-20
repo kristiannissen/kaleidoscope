@@ -23,7 +23,7 @@ export default {
     },
     data() {
         return {
-            id: this.initialid,
+            id: 0,
             list: []
         };
     },
