@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 
 Route::get('/post/{slug}', 'ShowBlogEntry');
+Route::get('/category/{slug}', 'ShowCategory');

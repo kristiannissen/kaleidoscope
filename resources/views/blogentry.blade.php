@@ -13,7 +13,7 @@
                 <div>
                     @foreach ($categories as $category)
                         <span class="mdl-chip">
-                            <a href="" class="mdl-chip__text">{{ $category->name }}</a>
+                            <a href="/category/{{ $category->slug }}" class="mdl-chip__text">{{ $category->name }}</a>
                         </span>
                     @endforeach
                 </div>

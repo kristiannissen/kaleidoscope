@@ -12,7 +12,7 @@ class Category extends Model
         parent::boot();
 
         self::creating(function ($model) {
-            $text = preg_replace('~[^\pL\d]+~u', '-', $model->title);
+            $text = preg_replace('~[^\pL\d]+~u', '-', $model->name);
             $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
             $text = preg_replace('~[^-\w]+~', '', $text);
             $text = trim($text, '-');
