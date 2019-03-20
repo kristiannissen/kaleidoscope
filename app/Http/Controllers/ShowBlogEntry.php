@@ -17,7 +17,10 @@ class ShowBlogEntry extends Controller
     public function __invoke(Request $request, $slug)
     {
         //
-        $blogEntry = BlogEntry::where('slug', '=', $slug)->firstOrFail();
+        $blogEntry = BlogEntry::where('slug', '=', $slug)
+            ->with('categories')
+            ->firstOrFail();
+
         return view('blogentry', array(
             'title' => $blogEntry->title,
             'content' => $blogEntry->content,
