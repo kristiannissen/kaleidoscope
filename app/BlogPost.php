@@ -19,4 +19,9 @@ class BlogPost extends Model
       $model->slug = strtolower($text);
     });
   }
+  // Set relationship to User
+  public function user()
+  {
+    return $this->hasOne('App\User');
+  }
 }
