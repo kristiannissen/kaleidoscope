@@ -22,6 +22,11 @@ class BlogPost extends Model
   // Set relationship to User
   public function user()
   {
-    return $this->hasOne('App\User');
+    return $this->belongsTo('App\User');
+  }
+  // Latest
+  public function scopeLatest ($query)
+  {
+    return $query->where('online', '=', 'online');
   }
 }

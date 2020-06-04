@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Index page
+Route::get('/', 'ShowIndex');
+
+Route::get('/post/{slug}/', 'ShowBlogPost');
