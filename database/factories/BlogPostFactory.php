@@ -23,6 +23,7 @@ $factory->define(BlogPost::class, function(Faker $faker)
       'excerpt' => $excerpt[rand(0, count($excerpt) - 1)],
       'content' => $content,
       'user_id' => 1,
-      'online_at' => now()
+      'online_at' => now(),
+      'theme_image' => 'https://via.placeholder.com/800'
     );
 });

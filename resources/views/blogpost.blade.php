@@ -36,8 +36,14 @@
 </style>
 @endsection
 
+@section('amp_components')
+<script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+@endsection
+
 @section('content')
 <article>
+  <amp-img src="{{ $blog_post->theme_image }}"
+    width="800" height="400" layout="responsive" alt="something"></amp-img>
   <header>
     <h1>{{ $blog_post->title }}</h1>
   </header>
