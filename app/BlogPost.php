@@ -17,6 +17,11 @@ class BlogPost extends Model
       $text = preg_replace('~-+~', '-', $text);
 
       $model->slug = strtolower($text);
+
+      if ($model->online == 'online')
+      {
+        $model->online_at = now();
+      }
     });
   }
   // Set relationship to User

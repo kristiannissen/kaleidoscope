@@ -20,8 +20,7 @@
               <a class="mdl-navigation__link" href="/blogposts/">Dashboard</a>
               <a class="mdl-navigation__link" href="/blogposts/">Blogposts</a>
               <a class="mdl-navigation__link" href="/blogposts/create/">New Blog Posts</a>
-              <a class="mdl-navigation__link" href="">Link</a>
-              <a class="mdl-navigation__link" href="">Link</a>
+              <a class="mdl-navigation__link" href="">Profile</a>
             </nav>
           </div>
           <main class="mdl-layout__content">

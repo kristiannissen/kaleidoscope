@@ -17,7 +17,7 @@ class BlogPostController extends Controller
     public function index()
     {
       // Show list of blog posts with pagination
-      $blog_posts = DB::table('blog_posts')->simplePaginate(5);
+      $blog_posts = DB::table('blog_posts')->orderBy('created_at', 'desc')->simplePaginate(5);
 
       return view('blogposts.index', array(
         'blog_posts' => $blog_posts
@@ -48,7 +48,23 @@ class BlogPostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      // Create a new blog post
+      $blog_post = new BlogPost();
+      $blog_post->title = $request->title;
+      $blog_post->theme_image = $request->theme_image;
+      $blog_post->excerpt = $request->excerpt;
+      $blog_post->content = $request->content;
+      // TODO: Get user id from session
+      $blog_post->user_id = 1;
+
+      // Check online | offline
+      if ($request->has('online'))
+      {
+        $blog_post->online = 'online';
+      }
+      $blog_post->save();
+
+      return redirect('blogposts')->with('status', 'Blog Post Created');
     }
 
     /**
@@ -86,7 +102,9 @@ class BlogPostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      //
+
+      return redirect('blogposts/'. $id)->with('status', 'Blog Post Updated');
     }
 
     /**
