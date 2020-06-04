@@ -22,7 +22,6 @@ $factory->define(BlogPost::class, function(Faker $faker)
       'title' => $title[rand(0, count($title) - 1)],
       'excerpt' => $excerpt[rand(0, count($excerpt) - 1)],
       'content' => $content,
-      'slug' => Str::random(10),
       'user_id' => 1,
       'online_at' => now()
     );
