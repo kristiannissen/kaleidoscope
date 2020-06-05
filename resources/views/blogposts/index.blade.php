@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', 'Dashboard')
+@section('title', 'Blog Posts')
 
 @section('content')
   <div class="mdl-grid">

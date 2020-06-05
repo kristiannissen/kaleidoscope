@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class BlogPost extends Model
 {
@@ -21,6 +22,13 @@ class BlogPost extends Model
       if ($model->online == 'online')
       {
         $model->online_at = now();
+      }
+    });
+
+    static::updating(function($model) {
+      foreach($model->getDirty() as $key => $val) {
+        $original = $model->getOriginal($key);
+        Log::debug('blog changes '. $key .'-'. $val .'-'. $original);
       }
     });
   }

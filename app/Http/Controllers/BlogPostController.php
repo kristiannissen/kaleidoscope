@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 use App\BlogPost;
 
@@ -17,7 +18,7 @@ class BlogPostController extends Controller
     public function index()
     {
       // Show list of blog posts with pagination
-      $blog_posts = DB::table('blog_posts')->orderBy('created_at', 'desc')->simplePaginate(5);
+      $blog_posts = DB::table('blog_posts')->orderBy('created_at', 'desc')->simplePaginate(10);
 
       return view('blogposts.index', array(
         'blog_posts' => $blog_posts
@@ -102,9 +103,25 @@ class BlogPostController extends Controller
      */
     public function update(Request $request, $id)
     {
-      //
+      // Update a single blog post
+      $blog_post = BlogPost::find($id);
+      $blog_post->title = $request->title;
+      $blog_post->theme_image = $request->theme_image;
+      $blog_post->excerpt = $request->excerpt;
+      $blog_post->content = $request->content;
+      // TODO: Get user id from session
+      $blog_post->user_id = 1;
 
-      return redirect('blogposts/'. $id)->with('status', 'Blog Post Updated');
+      // Check online | offline
+      if ($request->has('online'))
+      {
+        $blog_post->online = 'online';
+      }
+      Log::debug('blog post online '. $request->has('online'));
+
+      $blog_post->save();
+
+      return redirect('blogposts/')->with('status', 'Blog Post Updated');
     }
 
     /**

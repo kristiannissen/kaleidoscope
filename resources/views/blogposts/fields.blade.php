@@ -1,18 +1,20 @@
 <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
-  <input class="mdl-textfield__input" type="text" id="field_title" value="{{ $blog_post->title }}" name="title">
+  <input class="mdl-textfield__input" type="text" id="field_title" value="{{ $blog_post->title }}" name="title" maxlength="255">
   <label class="mdl-textfield__label" for="field_title">Title</label>
+  <span>Max length 255 characters</span>
 </div>
 <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
   <input class="mdl-textfield__input" type="text" id="field_theme_image" value="{{ $blog_post->theme_image }}" name="theme_image">
   <label class="mdl-textfield__label" for="field_theme_image">Theme Image</label>
 </div>
 <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
-  <textarea class="mdl-textfield__input" type="text" rows="3" id="field_excerpt" name="excerpt">{{ $blog_post->excerpt }}</textarea>
+  <textarea class="mdl-textfield__input" type="text" rows="3" id="field_excerpt" name="excerpt" maxlength="255">{{ $blog_post->excerpt }}</textarea>
   <label class="mdl-textfield__label" for="field_excerpt">Excerpt</label>
+  <span>Max length 255 characters</span>
 </div>
-<div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
-  <textarea class="mdl-textfield__input" type="text" rows="7" id="field_content" name="content">{{ $blog_post->content }}</textarea>
-  <label class="mdl-textfield__label" for="field_content">Content</label>
+<div class="mdl-cell mdl-cell--12-col">
+  <textarea type="text" rows="7" id="field_content" name="content">{{ $blog_post->content }}</textarea>
+  <label class="mdl-textfield__label" for="field_content"></label>
 </div>
 <div class="mdl-cell mdl-cell--12-col">
   <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="field_online">

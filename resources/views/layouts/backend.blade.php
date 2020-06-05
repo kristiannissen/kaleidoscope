@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css" />
+    @yield('custom_css')
+    @yield('custom_js')
   </head>
   <body>
     <div class="mdl-layout__container">
@@ -20,7 +22,7 @@
               <a class="mdl-navigation__link" href="/blogposts/">Dashboard</a>
               <a class="mdl-navigation__link" href="/blogposts/">Blogposts</a>
               <a class="mdl-navigation__link" href="/blogposts/create/">New Blog Posts</a>
-              <a class="mdl-navigation__link" href="">Profile</a>
+              <a class="mdl-navigation__link" href="">Settings</a>
             </nav>
           </div>
           <main class="mdl-layout__content">
@@ -29,5 +31,6 @@
       </div>
     </div>
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    @yield('custom_scripts')
   </body>
 </html>
