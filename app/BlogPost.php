@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 
+use App\Activity;
+
 class BlogPost extends Model
 {
   // Create slug based on title
@@ -23,13 +25,39 @@ class BlogPost extends Model
       {
         $model->online_at = now();
       }
+
+      // Log activity
+      $data = array();
+      foreach($model->getDirty() as $key => $val) {
+        $original = $model->getOriginal($key);
+        $data[$key] = array(
+          'from' => $original,
+          'to' => $val
+        );
+      }
+      Activity::create(array(
+        'model' => 'BlogPost',
+        'user_name' => 'John Do',
+        'user_id' => 1,
+        'data' => json_encode($data)
+      ));
     });
 
     static::updating(function($model) {
+      $data = array();
       foreach($model->getDirty() as $key => $val) {
         $original = $model->getOriginal($key);
-        Log::debug('blog changes '. $key .'-'. $val .'-'. $original);
+        $data[$key] = array(
+          'from' => $original,
+          'to' => $val
+        );
       }
+      Activity::create(array(
+        'user_name' => 'John Do',
+        'user_id' => 1,
+        'model' => 'BlogPost',
+        'data' => json_encode($data)
+      ));
     });
   }
   // Set relationship to User
