@@ -9,14 +9,6 @@
 <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 @endsection
 
-@section('custom_scripts')
-<script>
-var simplemde = new SimpleMDE({
-  element: document.getElementById("field_content")
-});
-</script>
-@endsection
-
 @section('content')
   <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--8-col">
@@ -45,9 +37,8 @@ var simplemde = new SimpleMDE({
         <div class="mdl-card__title mdl-card--expand">
             <h2 class="mdl-card__title-text">Markdown Formatting</h2>
           </div>
-          <div class="mdl-card__supporting-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Aenan convallis.
+          <div class="mdl-card__supporting-text" id="app">
+            <hello></hello>
           </div>
           <div class="mdl-card__actions mdl-card--border">
             <a href="/blogposts/{{ $blog_post->id }}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
@@ -57,4 +48,13 @@ var simplemde = new SimpleMDE({
       </div>
     </div>
   </div>
+@endsection
+
+@section('custom_scripts')
+<script>
+var simplemde = new SimpleMDE({
+  element: document.getElementById("field_content")
+});
+</script>
+<script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
 @endsection

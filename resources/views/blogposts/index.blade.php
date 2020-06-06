@@ -21,7 +21,7 @@
       @endforeach
       </ul>
     </div>
-    <div class="mdl-cell mdl-cell--12-col">
+    <div class="mdl-cell mdl-cell--12-col" id="app">
       {{ $blog_posts->links() }}
     </div>
   </div>
