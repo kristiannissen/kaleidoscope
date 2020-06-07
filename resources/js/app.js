@@ -5,8 +5,8 @@
 require('./bootstrap');
 
 Vue.component(
-  'hello',
-  require('./components/Hello').default
+  'activity-stream',
+  require('./components/ActivityStream').default
 )
 
 const app = new Vue({

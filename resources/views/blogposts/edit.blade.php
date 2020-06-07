@@ -10,7 +10,7 @@
 @endsection
 
 @section('content')
-  <div class="mdl-grid">
+  <div class="mdl-grid" id="app">
     <div class="mdl-cell mdl-cell--8-col">
       <form action="{{ url('blogposts', ['id' => $blog_post->id]) }}" method="post" autocomplete="off">
         @csrf
@@ -24,21 +24,15 @@
             <h2 class="mdl-card__title-text">Activity</h2>
           </div>
           <div class="mdl-card__supporting-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Aenan convallis.
-          </div>
-          <div class="mdl-card__actions mdl-card--border">
-            <a href="/blogposts/{{ $blog_post->id }}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-              View Updates
-            </a>
-          </div>
+            <activity-stream blogid="{{ $blog_post->id }}"></activity-stream>
+          </div>          
       </div>
       <div class="mdl-card mdl-shadow--2dp">
         <div class="mdl-card__title mdl-card--expand">
             <h2 class="mdl-card__title-text">Markdown Formatting</h2>
           </div>
-          <div class="mdl-card__supporting-text" id="app">
-            <hello></hello>
+          <div class="mdl-card__supporting-text">
+            
           </div>
           <div class="mdl-card__actions mdl-card--border">
             <a href="/blogposts/{{ $blog_post->id }}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">

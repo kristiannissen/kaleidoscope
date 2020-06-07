@@ -2,6 +2,18 @@
 
 @section('title', 'Blog Posts')
 
+@section('custom_css')
+<style>
+  /* Elipsis for mdl-list__item-sub-title */
+  .mdl-list__item-sub-title {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 500px;
+  }
+</style>
+@endsection
+
 @section('content')
   <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--12-col">
