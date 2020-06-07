@@ -1,16 +1,29 @@
 <template>
-  <p>Hello {{ greeting }}</p>
+    <ul class="activitystream">
+      <li v-for="item in list">{{ item.user_name }} changed ...</li>
+    </ul>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      greeting: 'Pussy'
+    data() {
+        return {
+            list: []
+        };
+    },
+    props: ["blogid"],
+    mounted() {
+    },
+    methods: {
+        fetchStream() {
+            let endPoint = `/api/activity/${this.blogid}`;
+            this.http
+                .get(endPoint)
+                .then(response => (this.list = response.data.data));
+        }
+    },
+    created() {
+        this.fetchStream();
     }
-  },
-  mounted() {
-    console.log('Hello Mounted')
-  }
-}
+};
 </script>

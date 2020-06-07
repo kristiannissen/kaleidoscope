@@ -1,16 +1,16 @@
 <template>
-  <p>Hello {{ greeting }}</p>
+    <p>Hello {{ greeting }}</p>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      greeting: 'Pussy'
+    data() {
+        return {
+            greeting: "Pussy"
+        };
+    },
+    mounted() {
+        console.log("Hello Mounted");
     }
-  },
-  mounted() {
-    console.log('Hello Mounted')
-  }
-}
+};
 </script>
