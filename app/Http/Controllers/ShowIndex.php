@@ -17,7 +17,7 @@ class ShowIndex extends Controller
     public function __invoke(Request $request)
     {
       // Show latest blog post
-      $blog_posts = BlogPost::latest()->limit(2)->orderBy('online_at', 'desc')->get();
+      $blog_posts = BlogPost::latest()->limit(10)->orderBy('online_at', 'desc')->get();
 
       return view('home', array(
         'blog_posts' => $blog_posts

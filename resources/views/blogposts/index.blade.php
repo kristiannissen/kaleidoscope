@@ -25,7 +25,7 @@
             <span class="mdl-list__item-sub-title">{{ $post->excerpt }}</span>
           </span>
           <span class="mdl-list__item-secondary-action">
-            <a href="/blogposts/{{ $post->id }}/edit" class="">
+            <a href="/admin/blogposts/{{ $post->id }}/edit" class="">
               <i class="material-icons mdl-list__item-icon">edit</i>
             </a>
           </span>

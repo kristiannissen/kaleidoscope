@@ -19,9 +19,9 @@
         <div class="mdl-layout__drawer">
             <span class="mdl-layout-title">@yield('title')</span>
             <nav class="mdl-navigation">
-              <a class="mdl-navigation__link" href="/blogposts/">Dashboard</a>
-              <a class="mdl-navigation__link" href="/blogposts/">Blogposts</a>
-              <a class="mdl-navigation__link" href="/blogposts/create/">New Blog Posts</a>
+              <a class="mdl-navigation__link" href="/admin/dashboard/">Dashboard</a>
+              <a class="mdl-navigation__link" href="/admin/blogposts/">Blogposts</a>
+              <a class="mdl-navigation__link" href="/admin/blogposts/create/">New Blog Posts</a>
               <a class="mdl-navigation__link" href="">Settings</a>
             </nav>
           </div>

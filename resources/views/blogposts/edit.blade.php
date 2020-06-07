@@ -12,7 +12,7 @@
 @section('content')
   <div class="mdl-grid" id="app">
     <div class="mdl-cell mdl-cell--8-col">
-      <form action="{{ url('blogposts', ['id' => $blog_post->id]) }}" method="post" autocomplete="off">
+      <form action="{{ url('admin/blogposts', ['id' => $blog_post->id]) }}" method="post" autocomplete="off">
         @csrf
         @method('PUT')
         @include('blogposts.fields', array('blog_post' => $blog_post))

@@ -17,5 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'ShowIndex');
 // Storefront show single blog post
 Route::get('/post/{slug}/', 'ShowBlogPost');
+
 // Admin
-Route::resource('blogposts', 'BlogPostController');
+Route::prefix('admin')->group(function() {
+  Route::resource('/blogposts', 'BlogPostController');
+  Route::view('/dashboard', 'dashboard');
+});
