@@ -7,7 +7,7 @@
   {
     "@context": "http://schema.org",
     "@type": "NewsArticle",
-    "mainEntityOfPage": "{{ $blog_post_url }}",
+    "mainEntityOfPage": "{{ url()->current() }}",
     "headline": "{{ $blog_post->title }}",
     "datePublished": "{{ $blog_post->online_at }}",
     "dateModified": "{{ $blog_post->updated_at }}",
@@ -39,7 +39,7 @@
 @endsection
 
 @section('content')
-<article class="blog-post">
+<article class="blog-post" data-id="{{ $blog_post->id }}">
   <header class="blog-post--header">
     <h1 class="blog-post--title">{{ $blog_post->title }}</h1>
     <amp-date-display
@@ -56,7 +56,7 @@
     <p>{{ $blog_post->excerpt }}</p>
   </section>
   <section class="blog-post--content">
-    <p>{{ $blog_post->content }}</p>
+    {{ $blog_post->content }}
   </section>
   <section class="blog-post--related">
     <amp-list

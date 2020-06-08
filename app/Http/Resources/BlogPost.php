@@ -17,7 +17,7 @@ class BlogPost extends JsonResource
       // Mimics amp-list item
       return array(
         'title' => $this->title,
-        'url' => $this->slug,
+        'url' => '/post/'. $this->slug,
         'imageUrl' => $this->theme_image
       );
     }
