@@ -34,3 +34,12 @@ Route::get('blogpost/{id}', function($id) {
 Route::get('blogposts', function() {
   return new BlogPostCollection(BlogPost::all());
 });
+
+Route::get('blogpost/{id}/prevnext', function($id) {
+  $prev_id = $id - 1;
+  $next_id = $id + 1;
+  if ($prev_id == 0) {
+    $prev_id = 0;
+  }
+  return new BlogPostCollection(BlogPost::whereIn('id', [$prev_id, $next_id])->get());
+});
