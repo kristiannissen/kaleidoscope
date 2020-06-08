@@ -5,7 +5,7 @@
     <script async src="https://cdn.ampproject.org/v0.js"></script>
     <title>@yield('title')</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="canonical" href="">
+    <link rel="canonical" href="http://localhost:8000/">
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <style amp-custom>
       main {

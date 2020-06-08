@@ -49,7 +49,7 @@ Route::get('blogpost/{id}/prevnext', function ($id) {
     return new BlogPostCollection(
         BlogPost::whereIn('id', [$prev_id, $next_id])->get()
     );
-});
+})->middleware('cors');
 
 Route::post('pixel/{random_id}', function($random_id) {
   return 'hello';

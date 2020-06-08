@@ -30,15 +30,10 @@
 </script>
 @endsection
 
-@section('amp_custom_styles')
-<style amp-custom>
-
-</style>
-@endsection
-
 @section('amp_components')
 <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
 <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
+<script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
 @endsection
 
 @section('content')
@@ -63,7 +58,7 @@
       <template type="amp-mustache">
         <div class="image-entry">
           <amp-img src="@{{imageUrl}}" width="100" height="75"></amp-img>
-          <span>@{{title}}</span>
+          <a href="@{{url}}">@{{title}}</a>
         </div>
       </template>
     </amp-list>
