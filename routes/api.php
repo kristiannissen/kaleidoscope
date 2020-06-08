@@ -4,7 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Resources\ActivityCollection;
+use App\Http\Resources\BlogPosts as BlogPostResource;
 use App\Activity;
+use App\BlogPost;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,4 +24,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/activity/{model_id}', function($model_id) {
   return new ActivityCollection(Activity::where('model_id', '=', $model_id)->orderBy('created_at')->get());
+});
+
+Route::get('blogpost/{id}', function($id) {
+  return new BlogPostResource(BlogPost::find($id));
 });
