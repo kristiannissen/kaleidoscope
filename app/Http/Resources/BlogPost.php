@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class BlogPosts extends JsonResource
+class BlogPost extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,15 +14,10 @@ class BlogPosts extends JsonResource
      */
     public function toArray($request)
     {
+      // Mimics amp-list item
       return array(
-        'id' => $this->id,
         'title' => $this->title,
-        'excerpt' => $this->excerpt,
-        'content' => $this->content,
-        'slug' => $this->slug,
-        'created_at' => $this->created_at,
-        'updated_at' => $this->updated_at,
-        'online_at' => $this->online_at
+        'url' => $this->slug
       );
     }
 }

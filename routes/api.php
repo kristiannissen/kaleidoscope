@@ -4,7 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Resources\ActivityCollection;
-use App\Http\Resources\BlogPosts as BlogPostResource;
+use App\Http\Resources\BlogPostCollection;
+use App\Http\Resources\BlogPost as BlogPostResource;
 use App\Activity;
 use App\BlogPost;
 /*
@@ -28,4 +29,8 @@ Route::get('/activity/{model_id}', function($model_id) {
 
 Route::get('blogpost/{id}', function($id) {
   return new BlogPostResource(BlogPost::find($id));
+});
+
+Route::get('blogposts', function() {
+  return new BlogPostCollection(BlogPost::all());
 });
