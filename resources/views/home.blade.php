@@ -22,12 +22,17 @@
 </style>
 @endsection
 
+@section('amp_components')
+<script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+@endsection
+
 @section('content')
 @foreach ($blog_posts as $post)
-<article>
-  <h1>
+<article class="blog-post">
+  <h1 class="blog-post-title">
     <a href="/post/<?= $post->slug ?>/"><?= $post->title ?></a>
   </h1>
+  <p class="blog-post-excerpt"><?= $post->excerpt ?></p>
 </article>
 @endforeach
 @endsection

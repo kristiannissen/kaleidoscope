@@ -7,6 +7,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="canonical" href="https://amp.dev/documentation/guides-and-tutorials/start/create/basic_markup/">
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <style amp-custom>
+      main {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+      }
     @yield('amp_ld_json')
     @yield('amp_custom_styles')
     @yield('amp_components')

@@ -41,13 +41,16 @@
 @endsection
 
 @section('content')
-<article>
+<article class="blog-post">
   <amp-img src="{{ $blog_post->theme_image }}"
-    width="800" height="400" layout="responsive" alt="something"></amp-img>
-  <header>
+    width="800" height="400" layout="responsive" alt="{{ $blog_post->title }}"></amp-img>
+  <header class="blog-post-header">
     <h1>{{ $blog_post->title }}</h1>
   </header>
-  <section>
+  <section class="blog-post-excerpt">
+    <p>{{ $blog_post->excerpt }}</p>
+  </section>
+  <section class="blog-post-content">
     <p>{{ $blog_post->content }}</p>
   </section>
 </article>
