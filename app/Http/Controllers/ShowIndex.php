@@ -16,11 +16,15 @@ class ShowIndex extends Controller
      */
     public function __invoke(Request $request)
     {
-      // Show latest blog post
-      $blog_posts = BlogPost::latest()->limit(10)->orderBy('online_at', 'desc')->get();
+        // Show latest blog post
+        $blog_posts = BlogPost::latest()
+            ->limit(9)
+            ->orderBy('online_at', 'desc')
+            ->get();
 
-      return view('home', array(
-        'blog_posts' => $blog_posts
-      ));
+        return view('home', [
+          'blog_posts' => $blog_posts,
+          'ctrl' => 'index'
+        ]);
     }
 }

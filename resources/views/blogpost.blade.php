@@ -34,22 +34,31 @@
 <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
 <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
 <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+<script async custom-element="amp-date-display" src="https://cdn.ampproject.org/v0/amp-date-display-0.1.js"></script>
+<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
 @endsection
 
 @section('content')
 <article class="blog-post">
-  <amp-img src="{{ $blog_post->theme_image }}"
-    width="800" height="400" layout="responsive" alt="{{ $blog_post->title }}"></amp-img>
-  <header class="blog-post-header">
-    <h1>{{ $blog_post->title }}</h1>
+  <header class="blog-post--header">
+    <h1 class="blog-post--title">{{ $blog_post->title }}</h1>
+    <amp-date-display
+      datetime="{{ $blog_post->online_at }}"
+      layout="fixed"
+      width="200"
+      height="50">
+      <template type="amp-mustache">
+        <time class="blog-post--time">@{{day}} @{{monthName}} @{{year}}</time>
+      </template>
+    </amp-date-display>
   </header>
-  <section class="blog-post-excerpt">
+  <section class="blog-post--excerpt">
     <p>{{ $blog_post->excerpt }}</p>
   </section>
-  <section class="blog-post-content">
+  <section class="blog-post--content">
     <p>{{ $blog_post->content }}</p>
   </section>
-  <section class="blog-post-related">
+  <section class="blog-post--related">
     <amp-list
       width="auto"
       height="140"
@@ -64,4 +73,7 @@
     </amp-list>
   </section>
 </article>
+<aside class="blog-aside">
+  
+</aside>
 @endsection

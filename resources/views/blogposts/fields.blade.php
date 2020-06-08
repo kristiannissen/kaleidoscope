@@ -13,7 +13,7 @@
   <span>Max length 255 characters</span>
 </div>
 <div class="mdl-cell mdl-cell--12-col">
-  <textarea type="text" rows="7" id="field_content" name="content">{{ $blog_post->content }}</textarea>
+  <textarea type="text" rows="7" id="field_content" name="content" class="mdl-textfield__input">{{ $blog_post->content }}</textarea>
   <label class="mdl-textfield__label" for="field_content"></label>
 </div>
 <div class="mdl-cell mdl-cell--12-col">

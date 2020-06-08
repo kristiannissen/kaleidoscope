@@ -3,9 +3,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   font: normal normal 16px sans-serif;
 }
+
 .site-header {
   display: flex;
   height: 100px;
@@ -13,6 +15,7 @@ body {
   padding: 2em 0;
   justify-content: center;
 }
+
 .site-title {
   font-weight: 900;
   text-transform: uppercase;
@@ -20,8 +23,7 @@ body {
   transform: translateY(0.00596em);
   color: #171617;
 }
-.site-navigation {
-}
+
 .site-navigation--items {
   display: flex;
   list-style-type: none;
@@ -29,9 +31,11 @@ body {
   padding: 0;
   justify-content: center;
 }
+
 .site-navigation--items-item {
   margin: 0 1em;
 }
+
 .site-content {
   display: flex;
   justify-content: center;
@@ -40,28 +44,32 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
+
 .blog-post {
   width: 30em;
   padding: 1em;
 }
-.blog-post--header {
-}
+
 .blog-post--title {
   font: normal normal 48px serif;
   line-height: 1.33333;
   color: #171617;
 }
+
 .blog-post--title a {
   text-decoration: none;
   color: #171617;
 }
+
 .blog-post--time {
   font: normal normal 36px serif;
-  color: rgb(88, 198, 194);
+  color: #58c6c2;
 }
+
 .blog-post--first {
   width: 60em;
 }
+
 .ctrl_index .blog-post--excerpt {
   overflow: hidden;
   white-space: nowrap;
@@ -70,13 +78,15 @@ body {
   line-height: 1.8;
   font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: .12em;
+  letter-spacing: 0.12em;
   font-family: sans-serif;
 }
+
 .blog-post--readmore {
   display: flex;
   justify-content: flex-end;
 }
+
 .blog-post--readmore a {
   cursor: pointer;
   display: inline-block;
@@ -88,24 +98,27 @@ body {
   font: normal normal 14px sans-serif;
   text-decoration: none;
 }
+
 .blog-post--readmore a:hover {
-  background-color: rgba(0,0,0,.12);
+  background-color: rgba(0, 0, 0, 0.12);
 }
 
 /* Post View */
+
 .ctrl_blog .blog-post {
   width: 40em;
 }
+
 .ctrl_blog .blog-aside {
   width: 20em;
 }
-.blog-post--excerpt {
-}
+
 .blog-post--content {
   font: normal normal 16px sans-serif;
   line-height: 2;
   color: #171617;
 }
+
 .blog-post--content::first-letter {
   float: left;
   font-size: 64px;
@@ -113,10 +126,11 @@ body {
   line-height: 1;
   margin-right: 16px;
   font-family: serif;
-  color: rgb(88, 198, 194);
+  color: #58c6c2;
 }
 
 /* Typo */
+
 .site-header h1 {
   color: #171617;
   font-size: 3.375em;
@@ -124,3 +138,4 @@ body {
   font-weight: 900;
   text-transform: uppercase;
 }
+

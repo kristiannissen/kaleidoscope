@@ -65,7 +65,7 @@ class BlogPostController extends Controller
       }
       $blog_post->save();
 
-      return redirect('blogposts')->with('status', 'Blog Post Created');
+      return redirect('admin/blogposts/')->with('status', 'Blog Post Created');
     }
 
     /**
@@ -121,7 +121,7 @@ class BlogPostController extends Controller
 
       $blog_post->save();
 
-      return redirect('blogposts/')->with('status', 'Blog Post Updated');
+      return redirect('admin/blogposts/')->with('status', 'Blog Post Updated');
     }
 
     /**
