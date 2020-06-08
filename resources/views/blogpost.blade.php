@@ -38,6 +38,7 @@
 
 @section('amp_components')
 <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+<script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
 @endsection
 
 @section('content')
@@ -52,6 +53,20 @@
   </section>
   <section class="blog-post-content">
     <p>{{ $blog_post->content }}</p>
+  </section>
+  <section class="blog-post-related">
+    <amp-list
+      width="auto"
+      height="140"
+      layout="fixed-height"
+      src="/api/blogpost/{{ $blog_post->id }}/prevnext">
+      <template type="amp-mustache">
+        <div class="image-entry">
+          <amp-img src="@{{imageUrl}}" width="100" height="75"></amp-img>
+          <span>@{{title}}</span>
+        </div>
+      </template>
+    </amp-list>
   </section>
 </article>
 @endsection

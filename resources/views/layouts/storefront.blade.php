@@ -5,7 +5,7 @@
     <script async src="https://cdn.ampproject.org/v0.js"></script>
     <title>@yield('title')</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="canonical" href="https://amp.dev/documentation/guides-and-tutorials/start/create/basic_markup/">
+    <link rel="canonical" href="">
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <style amp-custom>
       main {
@@ -27,7 +27,7 @@
       <script type="application/json">
           {
             "requests": {
-              "pageview": "/pixel?RANDOM"
+              "pageview": "/api/pixel/RANDOM"
             },
             "triggers": {
               "trackPageview": {

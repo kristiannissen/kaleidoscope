@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Log;
 
 use App\Http\Resources\ActivityCollection;
 use App\Http\Resources\BlogPostCollection;
@@ -23,23 +24,33 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/activity/{model_id}', function($model_id) {
-  return new ActivityCollection(Activity::where('model_id', '=', $model_id)->orderBy('created_at')->get());
+Route::get('/activity/{model_id}', function ($model_id) {
+    return new ActivityCollection(
+        Activity::where('model_id', '=', $model_id)
+            ->orderBy('created_at')
+            ->get()
+    );
 });
 
-Route::get('blogpost/{id}', function($id) {
-  return new BlogPostResource(BlogPost::find($id));
+Route::get('blogpost/{id}', function ($id) {
+    return new BlogPostResource(BlogPost::find($id));
 });
 
-Route::get('blogposts', function() {
-  return new BlogPostCollection(BlogPost::all());
+Route::get('blogposts', function () {
+    return new BlogPostCollection(BlogPost::all());
 });
 
-Route::get('blogpost/{id}/prevnext', function($id) {
-  $prev_id = $id - 1;
-  $next_id = $id + 1;
-  if ($prev_id == 0) {
-    $prev_id = 0;
-  }
-  return new BlogPostCollection(BlogPost::whereIn('id', [$prev_id, $next_id])->get());
+Route::get('blogpost/{id}/prevnext', function ($id) {
+    $prev_id = $id - 1;
+    $next_id = $id + 1;
+    if ($prev_id == 0) {
+        $prev_id = 0;
+    }
+    return new BlogPostCollection(
+        BlogPost::whereIn('id', [$prev_id, $next_id])->get()
+    );
+});
+
+Route::post('pixel/{random_id}', function($random_id) {
+  return 'hello';
 });
