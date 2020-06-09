@@ -90,7 +90,7 @@
     src="/api/latest-blogposts/"
   >
     <template type="amp-mustache">
-      <article class="">
+      <article class="" data-vars-article-id="@{{id}}">
         <a href="@{{ url }}">@{{ title }}</a>
       </article>
     </template>
@@ -103,7 +103,8 @@
   <script type="application/json">
     {
       "requests": {
-        "pageview": "/api/pixel/RANDOM/?event=${eventName}&id=${elementId}"
+        "pageview": "/api/tracker/RANDOM/?event=${eventName}&id=${elementId}",
+        "error": "/api/error/RANDOM/"
       },
       "triggers": {
         "trackPageview": {
@@ -122,7 +123,11 @@
             "eventName": "clickevent",
             "elementId": "${articleId}"
           }
-        }  
+        },
+        "userError": {
+          "on": "user-error",
+          "request": "error"
+        }
       },
       "transport": {
         "xhrpost": true,

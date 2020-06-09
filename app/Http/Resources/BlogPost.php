@@ -18,7 +18,8 @@ class BlogPost extends JsonResource
       return array(
         'title' => $this->title,
         'url' => '/post/'. $this->slug,
-        'imageUrl' => $this->theme_image
+        'imageUrl' => $this->theme_image,
+        'id' => $this->id
       );
     }
 }

@@ -62,7 +62,7 @@
     layout="fixed-height"
     src="/api/latest-blogposts/">
     <template type="amp-mustache">
-      <div class="link-entry">
+      <div class="link-entry" data-vars-article-id="">
         <a href="@{{url}}">@{{title}}</a>
       </div>
     </template>
@@ -71,5 +71,41 @@
 @endsection
 
 @section('custom_scripts')
-
+<amp-analytics>
+  <script type="application/json">
+    {
+      "requests": {
+        "pageview": "/api/tracker/RANDOM/?event=${eventName}&id=${elementId}",
+        "error": "/api/errors/RANDOM/"
+      },
+      "triggers": {
+        "trackPageview": {
+          "on": "visible",
+          "request": "pageview",
+          "vars": {
+            "eventName": "pageview",
+            "elementId": "{{ $blog_post->id }}"
+          }
+        },
+        "trackClick": {
+          "on": "click",
+          "request": "pageview",
+          "selector": "[data-vars-article-id]",
+          "vars": {
+            "eventName": "clickevent",
+            "elementId": "${articleId}"
+          }
+        },
+        "userError": {
+          "on": "user-error",
+          "request": "error"
+        }
+      },
+      "transport": {
+        "xhrpost": true,
+        "useBody": true
+      }  
+    }
+  </script>
+</amp-analytics>
 @endsection
