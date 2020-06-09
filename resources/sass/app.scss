@@ -6,6 +6,7 @@ body {
   font: normal normal 16px sans-serif;
   line-height: 1.5;
   background-color: pink;
+  color: #171617;
 }
 /* Typo */
 p {
@@ -78,17 +79,34 @@ time {
 .blog-post--title a {
   text-decoration: none;
   outline: 0;
+  color: #171617;
 }
 .blog-post--title a:active, .blog-post--title a:hover, .blog-post--title a:active {
   outline: 0;
   color: #000;
+}
+.blog-post--readmore {
+  display: flex;
+  justify-content: flex-end;
+}
+.blog-post--readmore a {
+  display: inline-block;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 2x;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.54);
+  text-decoration: none;
+}
+.blog-post--readmore a:hover {
+  background-color: rgba(0,0,0,.12);
 }
 .ctrl_blog .blog-post--excerpt {
   text-transform: uppercase;
   font: italic normal 1em sans-serif;
   font-weight: 700;
 }
-.ctrl_blog .blog-post--header {
+.blog-post--header {
   margin-bottom: 1.5em;
 }
 .site-footer {
@@ -110,6 +128,24 @@ time {
   /* Landscape tablet, portrait large tablet */
   body {
     background-color: blue;
+  }
+  .site-header {
+    justify-content: space-between;
+    padding: 0 2em;
+  }
+  .site-content {
+    display: flex;
+    width: 60em;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  .site-content--blogposts {
+    width: 40em;
+  }
+  .site-sidebar {
+    width: 20em;
+    align-items: stretch;
+    padding-top: 0.88889em;
   }
 }
 @media (min-width: 82em) {

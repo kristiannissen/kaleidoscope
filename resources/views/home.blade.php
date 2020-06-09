@@ -23,37 +23,24 @@
 @endsection
 
 @section('content')
-@foreach ($blog_posts as $post)
-  @if($loop->first)
-    <article class="blog-post blog-post--first" data-id="{{ $post->id }}">
-        <h1 class="blog-post--title">
-          <a href="/post/{{ $post->slug }}/">{{ $post->title }}</a>
-        </h1>
-        <time class="blog-post--time"
-          datetime="{{ $post->online_at }}">
-          {{ $post->online_at }}
-        </time>
-      <p class="blog-post--excerpt">{{ $post->excerpt }}</p>
-      <div class="blog-post--readmore">
-        <a href="/post/{{ $post->slug }}">Read more</a>
-      </div>
-    </article>
-  @elseif($loop->last)
-  <article class="blog-post blog-post--last" data-id="{{ $post->id }}">
-    <h1 class="blog-post--title">
-      <a href="/post/{{ $post->slug }}/">{{ $post->title }}</a>
-    </h1>
-    <time class="blog-post--time"
-      datetime="{{ $post->online_at }}">
-      {{ $post->online_at }}
-    </time>
-    <p class="blog-post--excerpt">{{ $post->excerpt }}</p>
-    <div class="blog-post--readmore">
-      <a href="/post/{{ $post->slug }}">Read more</a>
-    </div>
-  </article>
-  @else
-    <article class="blog-post" data-id="{{ $post->id }}">
+<div class="site-content--blogposts">
+  @foreach ($blog_posts as $post)
+    @if($loop->first)
+      <article class="blog-post blog-post--first" data-id="{{ $post->id }}">
+          <h1 class="blog-post--title">
+            <a href="/post/{{ $post->slug }}/">{{ $post->title }}</a>
+          </h1>
+          <time class="blog-post--time"
+            datetime="{{ $post->online_at }}">
+            {{ $post->online_at }}
+          </time>
+        <p class="blog-post--excerpt">{{ $post->excerpt }}</p>
+        <div class="blog-post--readmore">
+          <a href="/post/{{ $post->slug }}/">Read more</a>
+        </div>
+      </article>
+    @elseif($loop->last)
+    <article class="blog-post blog-post--last" data-id="{{ $post->id }}">
       <h1 class="blog-post--title">
         <a href="/post/{{ $post->slug }}/">{{ $post->title }}</a>
       </h1>
@@ -63,9 +50,27 @@
       </time>
       <p class="blog-post--excerpt">{{ $post->excerpt }}</p>
       <div class="blog-post--readmore">
-        <a href="/post/{{ $post->slug }}">Read more</a>
+        <a href="/post/{{ $post->slug }}/">Read more</a>
       </div>
     </article>
-  @endif
-@endforeach
+    @else
+      <article class="blog-post" data-id="{{ $post->id }}">
+        <h1 class="blog-post--title">
+          <a href="/post/{{ $post->slug }}/">{{ $post->title }}</a>
+        </h1>
+        <time class="blog-post--time"
+          datetime="{{ $post->online_at }}">
+          {{ $post->online_at }}
+        </time>
+        <p class="blog-post--excerpt">{{ $post->excerpt }}</p>
+        <div class="blog-post--readmore">
+          <a href="/post/{{ $post->slug }}/">Read more</a>
+        </div>
+      </article>
+    @endif
+  @endforeach
+</div>
+<div class="site-sidebar">
+  sidebar
+</div>
 @endsection
