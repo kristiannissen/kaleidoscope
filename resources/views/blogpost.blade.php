@@ -35,6 +35,7 @@
 <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
 <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
 <script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
+<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
 @endsection
 
 @section('content')
@@ -69,4 +70,31 @@
     </section>
   </aside>
 </article>
+@endsection
+
+@section('custom_scripts')
+<amp-analytics id="anal-ytics">
+  <script type="application/json">
+    {
+      "requests": {
+        "pageview": "/api/pixel/RANDOM",
+        "event": "/api/pixel/RANDOM"
+      },
+      "triggers": {
+        "trackPageview": {
+          "on": "visible",
+          "request": "pageview"
+        },
+        "trackAnchorClicks": {
+          "on": "click",
+          "selector": "[data-id]",
+          "request": "event",
+          "vars": {
+            "article": document.title
+          }
+        }  
+      }  
+    }
+  </script>
+</amp-analytics>
 @endsection

@@ -52,5 +52,5 @@ Route::get('blogpost/{id}/prevnext', function ($id) {
 })->middleware('cors');
 
 Route::post('pixel/{random_id}', function($random_id) {
-  return 'hello';
+  return 'hello '. $random_id;
 });
