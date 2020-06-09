@@ -18,13 +18,12 @@ class ShowIndex extends Controller
     {
         // Show latest blog post
         $blog_posts = BlogPost::latest()
-            ->limit(9)
+            ->limit(10)
             ->orderBy('online_at', 'desc')
             ->get();
 
-        return view('home', [
-          'blog_posts' => $blog_posts,
-          'referer' => $request->headers->get('referer')
+        return view('index', [
+          'blog_posts' => $blog_posts
         ]);
     }
 }

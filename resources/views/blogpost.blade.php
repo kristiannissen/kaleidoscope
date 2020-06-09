@@ -75,7 +75,7 @@
   <script type="application/json">
     {
       "requests": {
-        "pageview": "/api/tracker/RANDOM/?event=${eventName}&id=${elementId}",
+        "pageview": "/api/tracker/RANDOM/?event=${eventName}&id=${elementId}&type=${elementType}",
         "error": "/api/errors/RANDOM/"
       },
       "triggers": {
@@ -84,7 +84,8 @@
           "request": "pageview",
           "vars": {
             "eventName": "pageview",
-            "elementId": "{{ $blog_post->id }}"
+            "elementId": "{{ $blog_post->id }}",
+            "elementType": "BlogPost"
           }
         },
         "trackClick": {
@@ -93,7 +94,8 @@
           "selector": "[data-vars-article-id]",
           "vars": {
             "eventName": "clickevent",
-            "elementId": "${articleId}"
+            "elementId": "${articleId}",
+            "elementType": "BlogPost"
           }
         },
         "userError": {

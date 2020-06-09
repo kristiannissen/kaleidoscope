@@ -83,18 +83,24 @@
   @endforeach
 </div>
 <div class="site-content--sidebar">
-  <amp-list
-    width="200"
-    height="200"
-    layout="responsive"
-    src="/api/latest-blogposts/"
-  >
-    <template type="amp-mustache">
-      <article class="" data-vars-article-id="@{{id}}">
-        <a href="@{{ url }}">@{{ title }}</a>
-      </article>
-    </template>
-  </amp-list>
+  <div class="card">
+    <div class="card--title">
+      <h2>Latest Blog Posts</h2>
+    </div>
+    <div class="card--content">
+      <amp-list
+        width="200"
+        height="200"
+        layout="responsive"
+        src="/api/latest-blogposts/">
+        <template type="amp-mustache">
+          <article class="list--item" data-vars-article-id="@{{id}}">
+            <a href="@{{ url }}">@{{ title }}</a>
+          </article>
+        </template>
+      </amp-list>
+    </div>
+  </div>
 </div>
 @endsection
 
@@ -103,7 +109,7 @@
   <script type="application/json">
     {
       "requests": {
-        "pageview": "/api/tracker/RANDOM/?event=${eventName}&id=${elementId}",
+        "pageview": "/api/tracker/RANDOM/?event=${eventName}&id=${elementId}&type=${elementType}",
         "error": "/api/error/RANDOM/"
       },
       "triggers": {
@@ -112,7 +118,8 @@
           "request": "pageview",
           "vars": {
             "eventName": "pageview",
-            "elementId": "0"
+            "elementId": "0",
+            "elementType": "IndexPage"
           }
         },
         "trackClick": {
@@ -121,7 +128,8 @@
           "selector": "[data-vars-article-id]",
           "vars": {
             "eventName": "clickevent",
-            "elementId": "${articleId}"
+            "elementId": "${articleId}",
+            "elementType": "BlogPost"
           }
         },
         "userError": {
