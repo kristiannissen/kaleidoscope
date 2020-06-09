@@ -35,66 +35,41 @@
 <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
 <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
 <script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
-<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
 @endsection
 
 @section('content')
-<article class="blog-post" data-id="{{ $blog_post->id }}">
-  <header class="blog-post--header">
-    <h1 class="blog-post--title">{{ $blog_post->title }}</h1>
-    <time class="blog-post--time"
-      datetime="{{ $blog_post->online_at }}">
-      {{ $blog_post->online_at }}
-    </time>
-  </header>
-  <section class="blog-post--excerpt">
-    <p>{{ $blog_post->excerpt }}</p>
-  </section>
-  <section class="blog-post--content">
-    {{ $blog_post->content }}
-  </section>
-  <aside class="blog-post--aside">
-    <section class="blog-post--related">
-      <amp-list
-        width="auto"
-        height="140"
-        layout="fixed-height"
-        src="/api/blogpost/{{ $blog_post->id }}/prevnext">
-        <template type="amp-mustache">
-          <div class="image-entry">
-            <amp-img src="@{{imageUrl}}" width="100" height="75"></amp-img>
-            <a href="@{{url}}">@{{title}}</a>
-          </div>
-        </template>
-      </amp-list>
+<div class="blog-post--post">
+  <article class="blog-post" data-id="{{ $blog_post->id }}">
+    <header class="blog-post--header">
+      <h1 class="blog-post--title">{{ $blog_post->title }}</h1>
+      <time class="blog-post--time"
+        datetime="{{ $blog_post->online_at }}">
+        {{ $blog_post->online_at }}
+      </time>
+    </header>
+    <section class="blog-post--excerpt">
+      <p>{{ $blog_post->excerpt }}</p>
     </section>
-  </aside>
-</article>
+    <section class="blog-post--content">
+      {{ $blog_post->content }}
+    </section>
+  </article>
+</div>
+<div class="blog-post--sidebar">
+  <amp-list
+    width="auto"
+    height="140"
+    layout="fixed-height"
+    src="/api/latest-blogposts/">
+    <template type="amp-mustache">
+      <div class="link-entry">
+        <a href="@{{url}}">@{{title}}</a>
+      </div>
+    </template>
+  </amp-list>
+</div>
 @endsection
 
 @section('custom_scripts')
-<amp-analytics id="anal-ytics">
-  <script type="application/json">
-    {
-      "requests": {
-        "pageview": "/api/pixel/RANDOM",
-        "event": "/api/pixel/RANDOM"
-      },
-      "triggers": {
-        "trackPageview": {
-          "on": "visible",
-          "request": "pageview"
-        },
-        "trackAnchorClicks": {
-          "on": "click",
-          "selector": "[data-id]",
-          "request": "event",
-          "vars": {
-            "article": document.title
-          }
-        }  
-      }  
-    }
-  </script>
-</amp-analytics>
+
 @endsection

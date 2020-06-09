@@ -24,7 +24,7 @@ class ShowIndex extends Controller
 
         return view('home', [
           'blog_posts' => $blog_posts,
-          'ctrl' => 'index'
+          'referer' => $request->headers->get('referer')
         ]);
     }
 }

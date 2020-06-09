@@ -147,6 +147,12 @@ time {
     align-items: stretch;
     padding-top: 0.88889em;
   }
+  .blog-post--post {
+    max-width: 40em;
+  }
+  .blog-post--sidebar {
+    max-width: 20em;
+  }
 }
 @media (min-width: 82em) {
   /* Landscape large tablet, desktop */

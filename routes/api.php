@@ -51,6 +51,15 @@ Route::get('blogpost/{id}/prevnext', function ($id) {
     );
 })->middleware('cors');
 
-Route::post('pixel/{random_id}', function($random_id) {
-  return 'hello '. $random_id;
+Route::get('latest-blogposts', function() {
+  return new BlogPostCollection(
+    BlogPost::where('online', '=', 'online')
+      ->orderBy('online_at', 'desc')
+      ->limit(10)
+      ->get()
+  );
 });
+
+Route::post('pixel/{random_id}/', function($random_id) {
+  return 'hello '. $random_id;
+})->middleware('cors');
