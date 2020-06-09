@@ -93,6 +93,18 @@ blockquote p::after {
   padding: 0 1.125em;
 }
 
+.blog-post--title a {
+  text-decoration: none;
+  outline: 0;
+}
+
+.blog-post--title a:active,
+.blog-post--title a:hover,
+.blog-post--title a:active {
+  outline: 0;
+  color: #000;
+}
+
 .ctrl_blog .blog-post--excerpt {
   text-transform: uppercase;
   font: italic normal 1em sans-serif;

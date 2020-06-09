@@ -29,15 +29,10 @@
         <h1 class="blog-post--title">
           <a href="/post/{{ $post->slug }}/">{{ $post->title }}</a>
         </h1>
-        <amp-date-display
-          datetime="{{ $post->online_at }}"
-          layout="fixed"
-          width="200"
-          height="50">
-          <template type="amp-mustache">
-            <time class="blog-post--time">@{{day}} @{{monthName}} @{{year}}</time>
-          </template>
-        </amp-date-display>
+        <time class="blog-post--time"
+          datetime="{{ $post->online_at }}">
+          {{ $post->online_at }}
+        </time>
       <p class="blog-post--excerpt">{{ $post->excerpt }}</p>
       <div class="blog-post--readmore">
         <a href="/post/{{ $post->slug }}">Read more</a>
@@ -48,16 +43,10 @@
     <h1 class="blog-post--title">
       <a href="/post/{{ $post->slug }}/">{{ $post->title }}</a>
     </h1>
-    <amp-date-display
-      datetime="{{ $post->online_at }}"
-      layout="fixed"
-      width="200"
-      height="50"
-    >
-      <template type="amp-mustache">
-        <time class="blog-post--time">@{{day}} @{{monthName}} @{{year}}</time>
-      </template>
-    </amp-date-display>
+    <time class="blog-post--time"
+      datetime="{{ $post->online_at }}">
+      {{ $post->online_at }}
+    </time>
     <p class="blog-post--excerpt">{{ $post->excerpt }}</p>
     <div class="blog-post--readmore">
       <a href="/post/{{ $post->slug }}">Read more</a>
@@ -68,16 +57,10 @@
       <h1 class="blog-post--title">
         <a href="/post/{{ $post->slug }}/">{{ $post->title }}</a>
       </h1>
-      <amp-date-display
-        datetime="{{ $post->online_at }}"
-        layout="fixed"
-        width="200"
-        height="50"
-      >
-        <template type="amp-mustache">
-          <time class="blog-post--time">@{{day}} @{{monthName}} @{{year}}</time>
-        </template>
-      </amp-date-display>
+      <time class="blog-post--time"
+        datetime="{{ $post->online_at }}">
+        {{ $post->online_at }}
+      </time>
       <p class="blog-post--excerpt">{{ $post->excerpt }}</p>
       <div class="blog-post--readmore">
         <a href="/post/{{ $post->slug }}">Read more</a>
