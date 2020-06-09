@@ -1,126 +1,112 @@
-* {
-  margin: 0;
-  padding: 0;
+*, *:before, *:after {
   box-sizing: border-box;
 }
+/* Mobile first */
 body {
   font: normal normal 16px sans-serif;
+  line-height: 1.5;
+  background-color: pink;
 }
+/* Typo */
+p {
+  margin-top: 0;
+  margin-bottom: 1.5em;
+  font-size: 1em;
+  line-height: 1.5;
+}
+h1 {
+  font-size: 1.875em;
+  line-height: 1.2;
+  font-family: serif;
+  margin-top: 0.88889em;
+  margin-bottom: 0.44444em;
+}
+h2 {
+  font-size: 1.5em;
+  line-height: 1.5;
+  font-family: serif;
+  margin-top: 1.33333em;
+  margin-bottom: 0.66667em;
+}
+h3 {
+  font-size: 1.3125em;
+  line-height: 1.14286;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+blockquote p {
+  quotes: '\201c' '\201d' '\2018' '\2019';
+  font: italic bold 1.5em serif;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+blockquote p::before {
+  content: open-quote;
+}
+blockquote p::after {
+  content: close-quote;
+}
+time {
+  
+}
+
+/* Elements */
 .site-header {
   display: flex;
-  height: 100px;
-  align-items: center;
-  padding: 2em 0;
   justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
 }
-.site-title {
-  font-weight: 900;
-  text-transform: uppercase;
+.site-header--title {
   font-family: serif;
-  transform: translateY(0.00596em);
-  color: #171617;
+  font-size: 3.375em;
+  text-transform: uppercase;
+  margin: 0;
 }
-.site-navigation {
-}
-.site-navigation--items {
-  display: flex;
-  list-style-type: none;
+.site-header--navigation .site-navigation--items {
   margin: 0;
   padding: 0;
-  justify-content: center;
-}
-.site-navigation--items-item {
-  margin: 0 1em;
-}
-.site-content {
+  list-style-type: none;
   display: flex;
-  justify-content: center;
-  width: 60em;
-  flex-wrap: wrap;
-  margin-left: auto;
-  margin-right: auto;
 }
-.blog-post {
-  width: 30em;
-  padding: 1em;
+.site-content article {
+  padding: 0 1.125em;
 }
-.blog-post--header {
-}
-.blog-post--title {
-  font: normal normal 48px serif;
-  line-height: 1.33333;
-  color: #171617;
-}
-.blog-post--title a {
-  text-decoration: none;
-  color: #171617;
-}
-.blog-post--time {
-  font: normal normal 36px serif;
-  color: rgb(88, 198, 194);
-}
-.blog-post--first {
-  width: 60em;
-}
-.ctrl_index .blog-post--excerpt {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  font-size: 12px;
-  line-height: 1.8;
-  font-weight: 400;
+.ctrl_blog .blog-post--excerpt {
   text-transform: uppercase;
-  letter-spacing: .12em;
-  font-family: sans-serif;
-}
-.blog-post--readmore {
-  display: flex;
-  justify-content: flex-end;
-}
-.blog-post--readmore a {
-  cursor: pointer;
-  display: inline-block;
+  font: italic normal 1em sans-serif;
   font-weight: 700;
-  text-transform: uppercase;
-  border-radius: 2px;
-  padding: 8px;
-  color: rgba(0, 0, 0, 0.54);
-  font: normal normal 14px sans-serif;
-  text-decoration: none;
 }
-.blog-post--readmore a:hover {
-  background-color: rgba(0,0,0,.12);
+.ctrl_blog .blog-post--header {
+  margin-bottom: 1.5em;
 }
-
-/* Post View */
-.ctrl_blog .blog-post {
-  width: 40em;
-}
-.ctrl_blog .blog-aside {
-  width: 20em;
-}
-.blog-post--excerpt {
-}
-.blog-post--content {
-  font: normal normal 16px sans-serif;
-  line-height: 2;
-  color: #171617;
-}
-.blog-post--content::first-letter {
-  float: left;
-  font-size: 64px;
-  font-weight: 600;
-  line-height: 1;
-  margin-right: 16px;
-  font-family: serif;
-  color: rgb(88, 198, 194);
+.site-footer {
+  background-color: #171617;
+  color: #fff;
+  min-height: 75px;
 }
 
-/* Typo */
-.site-header h1 {
-  color: #171617;
-  font-size: 3.375em;
-  line-height: 1.11111;
-  font-weight: 900;
-  text-transform: uppercase;
+@media (min-width: 43em) {
+  /* Landscape large phone, tablet portrait */
+  body {
+    background-color: red;
+  }
+  h1 {
+    
+  }
+}
+@media (min-width: 62em) {
+  /* Landscape tablet, portrait large tablet */
+  body {
+    background-color: blue;
+  }
+}
+@media (min-width: 82em) {
+  /* Landscape large tablet, desktop */
+  body {
+    background-color: yellow;
+  }
 }

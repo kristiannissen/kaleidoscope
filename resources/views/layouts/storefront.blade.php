@@ -16,8 +16,8 @@
   </head>
   <body class="{{ $super_key }}">
     <header class="site-header">
-      <h1 class="site-title">Kaleidoscope</h1>
-      <nav class="site-navigation">
+      <h1 class="site-header--title">Kaleidoscope</h1>
+      <nav class="site-header--navigation">
         <ul class="site-navigation--items">
           <li class="site-navigation--items-item">
             <a href="/">Home</a>
