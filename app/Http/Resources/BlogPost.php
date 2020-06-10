@@ -18,7 +18,6 @@ class BlogPost extends JsonResource
       return array(
         'title' => $this->title,
         'url' => '/post/'. $this->slug,
-        'imageUrl' => $this->theme_image,
         'id' => $this->id,
         'published' => date('Y-m-d', strtotime($this->online_at))
       );

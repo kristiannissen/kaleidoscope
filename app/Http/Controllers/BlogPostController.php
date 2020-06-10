@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 use App\BlogPost;
+use App\File;
 
 class BlogPostController extends Controller
 {
@@ -52,7 +53,6 @@ class BlogPostController extends Controller
       // Create a new blog post
       $blog_post = new BlogPost();
       $blog_post->title = $request->title;
-      $blog_post->theme_image = $request->theme_image;
       $blog_post->excerpt = $request->excerpt;
       $blog_post->content = $request->content;
       // TODO: Get user id from session
@@ -106,7 +106,6 @@ class BlogPostController extends Controller
       // Update a single blog post
       $blog_post = BlogPost::find($id);
       $blog_post->title = $request->title;
-      $blog_post->theme_image = $request->theme_image;
       $blog_post->excerpt = $request->excerpt;
       $blog_post->content = $request->content;
       // TODO: Get user id from session
@@ -120,6 +119,20 @@ class BlogPostController extends Controller
       Log::debug('blog post online '. $request->has('online'));
 
       $blog_post->save();
+
+      // Files upload blog_file
+      $blog_file = $request->file('blog_file');
+      File::create(array(
+        'file_name' => $blog_file->getClientOriginalName(),
+        'role' => 'hero_image',
+        'model_name' => 'BlogPost',
+        'model_id' => $blog_post->id
+      ));
+      // Move file to public dir
+      $blog_file->move(
+        public_path('upload'),
+        $blog_file->getClientOriginalName()
+      );
 
       return redirect('admin/blogposts/')->with('status', 'Blog Post Updated');
     }

@@ -55,7 +55,6 @@ Typically this research is conducted either over the telephone or in a face-to-f
       'excerpt' => $excerpt[rand(0, count($excerpt) - 1)],
       'content' => $content[rand(0, count($content) - 1)],
       'user_id' => 1,
-      'online_at' => now(),
-      'theme_image' => 'https://via.placeholder.com/800'
+      'online_at' => now()
     );
 });

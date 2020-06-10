@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', 'Edit Blog Post')
+@section('title', 'New Blog Post')
 
 @section('custom_css')
 <style>
@@ -13,9 +13,8 @@
 @section('content')
   <div class="mdl-grid" id="app">
     <div class="mdl-cell mdl-cell--8-col">
-      <form action="{{ url('admin/blogposts', ['id' => $blog_post->id]) }}" method="post" autocomplete="off" enctype="multipart/form-data">
+      <form action="{{ url('admin/blogposts') }}" method="post" autocomplete="off" enctype="multipart/form-data">
         @csrf
-        @method('PUT')
         @include('blogposts.fields', array('blog_post' => $blog_post))
       </form>
     </div>
