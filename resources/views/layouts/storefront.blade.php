@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="canonical" href="{{ url()->current() }}">
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
     @yield('amp_ld_json')
@@ -23,7 +23,7 @@
       body {
         font: normal normal 16px "Lato", sans-serif;
         line-height: 1.5;
-        background-color: pink;
+        border-top: 2px solid pink;
         color: #171617;
       }
 
@@ -34,6 +34,10 @@
         margin-bottom: 1.5em;
         font-size: 1em;
         line-height: 1.5;
+      }
+
+      a {
+        color: #171617;
       }
 
       h1 {
@@ -59,11 +63,13 @@
         margin-bottom: 1em;
       }
 
+      blockquote {
+        margin: 0;
+      }
       blockquote p {
         quotes: "\201C" "\201D" "\2018" "\2019";
         font: italic bold 1.5em Playfair Display, serif;
         line-height: 1.5;
-        margin-bottom: 0;
       }
 
       blockquote p::before {
@@ -91,7 +97,7 @@
 
       .site-header--title {
         font-family: serif;
-        font-size: 2.75em;
+        font-size: 2.3em;
         text-transform: uppercase;
         margin: 0;
       }
@@ -108,18 +114,9 @@
         justify-content: space-around;
       }
 
-      .site-content .blog-post {
-        /*padding: 0 1.125em;*/
-      }
-
-      .blog-post--header,
-      .blog-post--excerpt,
-      .blog-post--readmore {
-        padding: 0 1.125em;
-      }
-
       .site-content--blogposts {
-        
+        display: flex;
+        flex-direction: column;
       }
 
       .blog-post--first {
@@ -132,6 +129,16 @@
       
       .blog-post--first .blog-post--title a {
         
+      }
+
+      .blog-post--title,
+      .blog-post--time,
+      .blog-post--excerpt p,
+      .blog-post--readmore,
+      .blog-post--content p,
+      .blog-post--content h2,
+      .blog-post--content h3 {
+        padding: 0 1.125em;
       }
 
       .blog-post--title a {
@@ -185,19 +192,25 @@
       .card {
         box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
         margin: 0 1.125em;
+        display: flex;
+        flex-direction: column;
       }
       .card--title {
         margin: 0 1.125em;
       }
       .card--content {
-        margin: 0 1.125em;
+        margin: 0 1.125em 1.125em;
+      }
+      .card--footer {
+        border-top: 1px solid rgba(0,0,0,.1);
+        padding: 1.125em;
       }
 
       @media (min-width: 43em) {
         /* Landscape large phone, tablet portrait */
 
         body {
-          background-color: red;
+          border-top: 2px solid red;
         }
       }
 
@@ -205,7 +218,7 @@
         /* Landscape tablet, portrait large tablet */
 
         body {
-          background-color: blue;
+          border-top: 2px solid blue;
         }
 
         .site-header {
@@ -243,7 +256,7 @@
         /* Landscape large tablet, desktop */
 
         body {
-          background-color: yellow;
+          border-top: 2px solid yellow;
         }
       }
     @yield('amp_custom_styles')

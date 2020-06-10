@@ -19,7 +19,8 @@ class BlogPost extends JsonResource
         'title' => $this->title,
         'url' => '/post/'. $this->slug,
         'imageUrl' => $this->theme_image,
-        'id' => $this->id
+        'id' => $this->id,
+        'published' => date('Y-m-d', strtotime($this->online_at))
       );
     }
 }

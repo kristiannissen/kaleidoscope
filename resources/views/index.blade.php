@@ -67,7 +67,8 @@
       </div>
     </article>
     @else
-      <article class="blog-post blog-post--index-{{ $loop->index }}" data-vars-article-id="{{ $post->id }}">
+      <article class="blog-post blog-post--index-{{ $loop->index }}"
+        data-vars-article-id="{{ $post->id }}">
         <header class="blog-post--header">
           <h1 class="blog-post--title">
             <a href="/post/{{ $post->slug }}/">{{ $post->title }}</a>
@@ -100,10 +101,13 @@
         src="/api/latest-blogposts/">
         <template type="amp-mustache">
           <article class="list--item" data-vars-article-id="@{{id}}">
-            <a href="@{{ url }}">@{{ title }}</a>
+            <time datetime="@{{ published }}">@{{ published }}</time><a href="@{{ url }}">@{{ title }}</a>
           </article>
         </template>
       </amp-list>
+    </div>
+    <div class="card--footer">
+      hello kitty
     </div>
   </div>
 </div>
