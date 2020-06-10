@@ -26,8 +26,13 @@
 <div class="site-content--blogposts">
   @foreach ($blog_posts as $post)
     @if($loop->first)
-      <article class="blog-post blog-post--first" data-vars-article-id="{{ $post->id }}">
+      <article class="blog-post blog-post--first blog-post--index-{{ $loop->index }}"
+        data-vars-article-id="{{ $post->id }}">
         <header class="blog-post--header">
+          <amp-img src="/photo-of-men-having-conversation-935949.jpg"
+            alt="Welcome" width="375" height="210"
+            layout="responsive">
+          </amp-img>
           <h1 class="blog-post--title">
             <a href="/post/{{ $post->slug }}/">{{ $post->title }}</a>
           </h1>
@@ -37,14 +42,14 @@
           </time>
         </header>
         <section class="blog-post--excerpt">
-          <p class="blog-post--excerpt">{{ $post->excerpt }}</p>
+          <p>{{ $post->excerpt }}</p>
         </section>
         <div class="blog-post--readmore">
           <a href="/post/{{ $post->slug }}/">Read more</a>
         </div>
       </article>
     @elseif($loop->last)
-    <article class="blog-post blog-post--last" data-vars-article-id="{{ $post->id }}">
+    <article class="blog-post blog-post--last blog-post--index-{{ $loop->index }}" data-vars-article-id="{{ $post->id }}">
       <header class="blog-post--header">
         <h1 class="blog-post--title">
           <a href="/post/{{ $post->slug }}/">{{ $post->title }}</a>
@@ -55,14 +60,14 @@
         </time>
       </header>
       <section class="blog-post--excerpt">
-        <p class="blog-post--excerpt">{{ $post->excerpt }}</p>
+        <p>{{ $post->excerpt }}</p>
       </section>
       <div class="blog-post--readmore">
         <a href="/post/{{ $post->slug }}/">Read more</a>
       </div>
     </article>
     @else
-      <article class="blog-post" data-vars-article-id="{{ $post->id }}">
+      <article class="blog-post blog-post--index-{{ $loop->index }}" data-vars-article-id="{{ $post->id }}">
         <header class="blog-post--header">
           <h1 class="blog-post--title">
             <a href="/post/{{ $post->slug }}/">{{ $post->title }}</a>
@@ -73,7 +78,7 @@
           </time>
         </header>
         <section class="blog-post--excerpt">
-          <p class="blog-post--excerpt">{{ $post->excerpt }}</p>
+          <p>{{ $post->excerpt }}</p>
         </section>
         <div class="blog-post--readmore">
           <a href="/post/{{ $post->slug }}/">Read more</a>

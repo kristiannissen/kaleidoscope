@@ -81,6 +81,7 @@
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
+        height: 100px;
         overflow-wrap: break-word;
         word-wrap: break-word;
         -webkit-hyphens: auto;
@@ -108,7 +109,29 @@
       }
 
       .site-content .blog-post {
+        /*padding: 0 1.125em;*/
+      }
+
+      .blog-post--header,
+      .blog-post--excerpt,
+      .blog-post--readmore {
         padding: 0 1.125em;
+      }
+
+      .site-content--blogposts {
+        
+      }
+
+      .blog-post--first {
+        
+      }
+
+      .blog-post--first .blog-post--header {
+        
+      }
+      
+      .blog-post--first .blog-post--title a {
+        
       }
 
       .blog-post--title a {
