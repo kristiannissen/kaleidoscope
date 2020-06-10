@@ -131,13 +131,22 @@
         
       }
 
-      .blog-post--title,
+      .blog-post--title {
+        padding: 0 0.6em;
+      }
+
+      .blog-post--content h2 {
+        padding: 0 0.7em;
+      }
+
+      .blog-post--content h3 {
+        padding: 0 0.8em;
+      }
+
       .blog-post--time,
       .blog-post--excerpt p,
       .blog-post--readmore,
-      .blog-post--content p,
-      .blog-post--content h2,
-      .blog-post--content h3 {
+      .blog-post--content p {
         padding: 0 1.125em;
       }
 
