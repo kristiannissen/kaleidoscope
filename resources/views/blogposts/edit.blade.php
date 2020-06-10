@@ -3,7 +3,11 @@
 @section('title', 'Edit Blog Post')
 
 @section('custom_css')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+<style>
+  textarea {
+    outline: none;
+  }
+</style>
 @endsection
 
 @section('content')

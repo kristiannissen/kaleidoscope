@@ -20,6 +20,7 @@
 <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
 <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
 <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
+<script async custom-element="amp-script" src="https://cdn.ampproject.org/v0/amp-script-0.1.js"></script>
 @endsection
 
 @section('content')
@@ -36,10 +37,15 @@
           <h1 class="blog-post--title">
             <a href="/post/{{ $post->slug }}/">{{ $post->title }}</a>
           </h1>
-          <time class="blog-post--time"
-            datetime="{{ $post->online_at }}">
-            {{ $post->online_at }}
-          </time>
+          <amp-script layout="container"
+            src="{{ asset('/js/tolocaledate.js') }}"
+            width="190"
+            height="20">
+            <time class="blog-post--time"
+              datetime="{{ $post->online_at }}">
+              {{ $post->online_at }}
+            </time>
+          </amp-script>
         </header>
         <section class="blog-post--excerpt">
           <p>{{ $post->excerpt }}</p>
@@ -104,6 +110,7 @@
             <time datetime="@{{ published }}">@{{ published }}</time><a href="@{{ url }}">@{{ title }}</a>
           </article>
         </template>
+        <div overflow class="list--overflow">See more</div>
       </amp-list>
     </div>
     <div class="card--footer">

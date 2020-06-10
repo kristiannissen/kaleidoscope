@@ -11,6 +11,11 @@
     text-overflow: ellipsis;
     max-width: 500px;
   }
+
+  textarea {
+    outline: none;
+  }
+
 </style>
 @endsection
 

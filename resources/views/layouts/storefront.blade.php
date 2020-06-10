@@ -27,6 +27,11 @@
         color: #171617;
       }
 
+      main {
+        position: relative;
+        min-height: 100vh;
+      }
+
       /* Typo */
 
       p {
@@ -268,6 +273,11 @@
           border-top: 2px solid yellow;
         }
       }
+
+      /* Amp styling */
+      .list--overflow {
+        background-color: #fff;
+      }
     @yield('amp_custom_styles')
     </style>
     @yield('amp_components')
@@ -289,7 +299,9 @@
       </nav>
     </header>
     <main class="site-content">@yield('content')</main>
-    <footer class="site-footer"></footer>
+    <footer class="site-footer">
+      
+    </footer>
   </body>
   @yield('custom_scripts')
 </html>
