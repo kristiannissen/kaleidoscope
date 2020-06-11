@@ -36,6 +36,7 @@ class ProcessImage implements ShouldQueue
     public function handle()
     {
       // Resize based on original
-      Log::debug('handle file '. $this->file->id);
+      $breakpoints = env('IMAGE_BREAKPOINTS');
+      Log::debug('handle file '. $this->file->id .' - '. $breakpoints);
     }
 }

@@ -37,7 +37,7 @@ class AppServiceProvider extends ServiceProvider
       } else if (Str::startsWith($url, '/story')) {
         $ctrl = 'story';
       }
-      Log::debug($ctrl .' - '. $url);
+      // Log::debug($ctrl .' - '. $url);
 
       View::share('super_key', 'ctrl_'. $ctrl);
     }

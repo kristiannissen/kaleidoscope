@@ -117,7 +117,7 @@ class BlogPostController extends Controller
       {
         $blog_post->online = 'online';
       }
-      Log::debug('blog post online '. $request->has('online'));
+      // Log::debug('blog post online '. $request->has('online'));
 
       $blog_post->save();
 
