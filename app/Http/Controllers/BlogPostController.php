@@ -130,7 +130,7 @@ class BlogPostController extends Controller
       ));
       // Move file to public dir
       $blog_file->move(
-        public_path('upload'),
+        public_path('storage'),
         $blog_file->getClientOriginalName()
       );
 

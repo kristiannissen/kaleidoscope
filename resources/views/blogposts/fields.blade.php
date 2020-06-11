@@ -20,14 +20,21 @@
     <span class="mdl-switch__label">Online</span>
   </label>
 </div>
-<div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
-  <div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-cell mdl-cell--4-col">
+<div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col" id="blog_files">
+  <div class="mdl-grid mdl-grid--no-spacing file_template">
+    <div class="mdl-cell mdl-cell--8-col">
       <input class="mdl-textfield__input" type="file"
-        id="field_blog_file"
+        id="field_blog_file[]"
         value="{{ $blog_post->theme_image }}" name="blog_file">
     </div>
+    <div class="mdl-cell mdl-cell--4-col">
+      select
+    </div>
   </div>
+</div>
+<div class="mdl-cell mdl-cell--12-col">
+  <button id="clone_file_field"
+    class="mdl-button mdl-js-button mdl-button--raised">Add more files</button>
 </div>
 <div class="form-action mdl-cell mdl-cell--12-col">
   <button type="reset" class="mdl-button mdl-js-button mdl-button--raised">

@@ -51,9 +51,13 @@ export default {
     methods: {
         fetchStream() {
             let endPoint = `/api/activity/${this.blogid}`;
-            this.http
-                .get(endPoint)
-                .then(response => (this.list = response.data.data));
+            // Request only if property exists
+            if (this.blogid !== '') { 
+              this.http
+                  .get(endPoint)
+                  .then(response => (this.list = response.data.data))
+                  .catch(err => console.log(err));
+            }
         }
     },
     created() {

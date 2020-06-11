@@ -46,4 +46,15 @@
 
 @section('custom_scripts')
 <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
+<script>
+  var fileTemplate = document.querySelector('.file_template'),
+    rootElm = document.getElementById('blog_files');
+  if (fileTemplate) {
+    document.getElementById('clone_file_field')
+      .addEventListener('click', function(event) {
+        event.preventDefault();
+        rootElm.append(fileTemplate.cloneNode(true));
+      })
+  }
+</script>
 @endsection
