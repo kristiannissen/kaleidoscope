@@ -33,6 +33,16 @@
         <option value="slide">Slide</option>
       </select>
     </div>
+    <div class="mdl-cell mdl-cell--2-col">
+      <div class="mld-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text"
+          id="blog_file_priority"
+          value="" name="blog_file_priority[]">
+        <label
+          class="mdl-textfield__label"
+          for="blog_file_priority">Priority</label>
+      </div>
+    </div>
   </div>
 </div>
 <!-- Template end //-->

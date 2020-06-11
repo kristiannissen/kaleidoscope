@@ -131,7 +131,7 @@ class BlogPostController extends Controller
             'model_name' => 'BlogPost',
             'model_id' => $blog_post->id,
             'mimetype' => $blog_file->getClientMimeType(),
-            'priority' => 1
+            'priority' => $request->blog_file_priority[$key]
           ));
           Log::debug(join(',', $request->blog_file_role) .' - '. $key .' - '. $blog_file);
         }
