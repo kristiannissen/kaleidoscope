@@ -37,7 +37,7 @@
       <div class="mld-textfield mdl-js-textfield">
         <input class="mdl-textfield__input" type="text"
           id="blog_file_priority"
-          value="" name="blog_file_priority[]">
+          value="1" name="blog_file_priority[]">
         <label
           class="mdl-textfield__label"
           for="blog_file_priority">Priority</label>

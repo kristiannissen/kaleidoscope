@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
+use App\Jobs\ProcessImage;
 use App\BlogPost;
 use App\File;
 
@@ -125,7 +126,7 @@ class BlogPostController extends Controller
         foreach($request->file('blog_file') as $key => $blog_file) {
           $blog_file->storeAs('public', $blog_file->getClientOriginalName());
           // Store in DB
-          File::create(array(
+          $file = File::create(array(
             'file_name' => $blog_file->getClientOriginalName(),
             'role' => $request->blog_file_role[$key],
             'model_name' => 'BlogPost',
@@ -133,6 +134,11 @@ class BlogPostController extends Controller
             'mimetype' => $blog_file->getClientMimeType(),
             'priority' => $request->blog_file_priority[$key]
           ));
+          // Create image resize job
+          // FIXME: Add more mimetypes as well as upload validation
+          if ($file->mimetype == 'image/jpeg') {
+            ProcessImage::dispatch($file);
+          }
           Log::debug(join(',', $request->blog_file_role) .' - '. $key .' - '. $blog_file);
         }
       }
