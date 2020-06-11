@@ -21,19 +21,23 @@
   </label>
 </div>
 <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col" id="blog_files">
+  <!-- Template //-->
   <div class="mdl-grid mdl-grid--no-spacing file_template">
-    <div class="mdl-cell mdl-cell--8-col">
+    <div class="mdl-cell mdl-cell--6-col">
       <input class="mdl-textfield__input" type="file"
-        id="field_blog_file[]"
-        value="{{ $blog_post->theme_image }}" name="blog_file">
+        value="{{ $blog_post->theme_image }}" name="blog_file[]">
     </div>
     <div class="mdl-cell mdl-cell--4-col">
-      select
+      <select name="blog_file_role[]">
+        <option value="hero_image">Hero Image</option>
+        <option value="slide">Slide</option>
+      </select>
     </div>
   </div>
 </div>
+<!-- Template end //-->
 <div class="mdl-cell mdl-cell--12-col">
-  <button id="clone_file_field"
+  <button id="clone_file_field" type="button"
     class="mdl-button mdl-js-button mdl-button--raised">Add more files</button>
 </div>
 <div class="form-action mdl-cell mdl-cell--12-col">

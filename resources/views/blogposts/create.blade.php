@@ -53,7 +53,9 @@
     document.getElementById('clone_file_field')
       .addEventListener('click', function(event) {
         event.preventDefault();
-        rootElm.append(fileTemplate.cloneNode(true));
+        var cloned = fileTemplate.cloneNode(true);
+        cloned.classList.remove('file_template');
+        rootElm.append(cloned);
       })
   }
 </script>
