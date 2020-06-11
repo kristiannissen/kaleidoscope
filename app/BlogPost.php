@@ -37,15 +37,16 @@ class BlogPost extends Model
           'to' => $val
         );
       }
-      // Store the activity
-      Activity::create(array(
-        'user_name' => 'John Do',
-        'user_id' => 1,
-        'model' => 'BlogPost',
-        'model_id' => $model->id,
-        'data' => json_encode($data)
-      ));
-      // Log::debug('model_id '. $model->id .' data '. json_encode($data));
+      // Store the activity if any changes where made
+      if (count($data) > 0) {
+        Activity::create(array(
+          'user_name' => 'John Do',
+          'user_id' => 1,
+          'model' => 'BlogPost',
+          'model_id' => $model->id,
+          'data' => json_encode($data)
+        ));
+      }
     });
 
   }
