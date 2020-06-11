@@ -121,25 +121,20 @@ class BlogPostController extends Controller
       $blog_post->save();
 
       // Files upload blog_file
-      if ($request->has('blog_file')) {
-        foreach($request->file('blog_file') as $blog_file) {
-          $blog_file = $request->file('blog_file');
-          Log::debug($blog_file->getClientOriginalName());
-        }
-        // Move file to public dir
-        /*
+      if ($request->hasfile('blog_file')) {
+        foreach($request->file('blog_file') as $key => $blog_file) {
+          $blog_file->storeAs('public', $blog_file->getClientOriginalName());
+          // Store in DB
           File::create(array(
             'file_name' => $blog_file->getClientOriginalName(),
-            'role' => 'hero_image',
+            'role' => $request->blog_file_role[$key],
             'model_name' => 'BlogPost',
-            'model_id' => $blog_post->id
+            'model_id' => $blog_post->id,
+            'mimetype' => $blog_file->getClientMimeType(),
+            'priority' => 1
           ));
-        
-        $blog_file->move(
-          public_path('storage'),
-          $blog_file->getClientOriginalName()
-        );
-        */
+          Log::debug(join(',', $request->blog_file_role) .' - '. $key .' - '. $blog_file);
+        }
       }
 
       return redirect('admin/blogposts/')->with('status', 'Blog Post Updated');

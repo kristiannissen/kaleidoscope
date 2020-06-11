@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 
 use App\Activity;
+use App\File;
 
 class BlogPost extends Model
 {
@@ -44,7 +45,7 @@ class BlogPost extends Model
         'model_id' => $model->id,
         'data' => json_encode($data)
       ));
-      Log::debug('model_id '. $model->id .' data '. json_encode($data));
+      // Log::debug('model_id '. $model->id .' data '. json_encode($data));
     });
 
   }
@@ -57,5 +58,21 @@ class BlogPost extends Model
   public function scopeLatest ($query)
   {
     return $query->where('online', '=', 'online');
+  }
+  // Hero Image
+  public function heroImage()
+  {
+    return File::where(array(
+      array('model_id', '=', $this->id)),
+      array('model_name', '=', 'BlogPost')
+    )->orderBy('created_at', 'asc')->first();
+  }
+  // Slides
+  public function slides()
+  {
+    return File::where(array(
+      array('model_id', '=', $this->id),
+      array('model_name', '=', 'BlogPost')
+    ))->orderBy('priority')->get();
   }
 }
