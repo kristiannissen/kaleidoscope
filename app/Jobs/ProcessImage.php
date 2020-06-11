@@ -23,9 +23,9 @@ class ProcessImage implements ShouldQueue
      */
     public function __construct(File $file)
     {
-      //
+      // File model
       $this->file = $file;
-      Log::debug('file added '. $file->id);
+      // Log::debug('file added '. $this->file->id);
     }
 
     /**
@@ -35,7 +35,7 @@ class ProcessImage implements ShouldQueue
      */
     public function handle()
     {
-      //
+      // Resize based on original
       Log::debug('handle file '. $this->file->id);
     }
 }

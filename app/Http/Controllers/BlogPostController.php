@@ -132,14 +132,15 @@ class BlogPostController extends Controller
             'model_name' => 'BlogPost',
             'model_id' => $blog_post->id,
             'mimetype' => $blog_file->getClientMimeType(),
-            'priority' => $request->blog_file_priority[$key]
+            'priority' => $request->blog_file_priority[$key],
+            'file_size' => 'original'
           ));
           // Create image resize job
           // FIXME: Add more mimetypes as well as upload validation
           if ($file->mimetype == 'image/jpeg') {
             ProcessImage::dispatch($file);
           }
-          Log::debug(join(',', $request->blog_file_role) .' - '. $key .' - '. $blog_file);
+          // Log::debug(join(',', $request->blog_file_role) .' - '. $key .' - '. $blog_file);
         }
       }
 

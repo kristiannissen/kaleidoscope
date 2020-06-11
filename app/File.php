@@ -8,7 +8,9 @@ class File extends Model
 {
     //
     protected $fillable = array(
-      'file_name', 'mimetype', 'role', 'model_name', 'model_id', 'priority'
+      'file_name', 'mimetype', 'role',
+      'model_name', 'model_id', 'priority',
+      'file_size'
     );
 
     protected static function booted() {
