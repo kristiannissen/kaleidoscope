@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
 
+use Image;
+
 use App\File as ImageFile;
 
 class ProcessImage implements ShouldQueue
@@ -25,9 +27,9 @@ class ProcessImage implements ShouldQueue
      */
     public function __construct(ImageFile $file)
     {
-      // File model
-      $this->file = $file;
-      // Log::debug('file added '. $this->file->id);
+        // File model
+        $this->file = $file;
+        // Log::debug('file added '. $this->file->id);
     }
 
     /**
@@ -37,17 +39,19 @@ class ProcessImage implements ShouldQueue
      */
     public function handle()
     {
-      // Resize based on original
-      $breakpoints = explode(',', env('IMAGE_BREAKPOINTS'));
-      $file_path = Storage::disk('local')->path($this->file->file_name);
-      switch($this->file->mimetype) {
-        case 'image/jpeg':
-          $image_file = imagecreatefromjpeg($file_path);
-          break;
-      }
-      // $image = imagescale($image_file, $breakpoints[0]);
-      foreach($breakpoints as $breakpoint) {
-        Log::debug($breakpoint);
-      }
+        // Resize based on original
+        $breakpoints = explode(',', env('IMAGE_BREAKPOINTS'));
+        $file_path = Storage::disk('local')->path($this->file->file_name);
+
+        list($file_name, $file_extension) = explode('.', $file_path);
+        foreach ($breakpoints as $breakpoint) {
+            $image_file = Image::make($file_path);
+            $image_file->resize($breakpoint, null);
+
+            $file_resized =
+                $file_name . '_' . $breakpoint . '.' . $file_extension;
+
+            $image_file->save($file_resized);
+        }
     }
 }
