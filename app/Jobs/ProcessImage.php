@@ -8,8 +8,10 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
 
-use App\File;
+use App\File as ImageFile;
 
 class ProcessImage implements ShouldQueue
 {
@@ -21,7 +23,7 @@ class ProcessImage implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(File $file)
+    public function __construct(ImageFile $file)
     {
       // File model
       $this->file = $file;
@@ -36,7 +38,16 @@ class ProcessImage implements ShouldQueue
     public function handle()
     {
       // Resize based on original
-      $breakpoints = env('IMAGE_BREAKPOINTS');
-      Log::debug('handle file '. $this->file->id .' - '. $breakpoints);
+      $breakpoints = explode(',', env('IMAGE_BREAKPOINTS'));
+      $file_path = Storage::disk('local')->path($this->file->file_name);
+      switch($this->file->mimetype) {
+        case 'image/jpeg':
+          $image_file = imagecreatefromjpeg($file_path);
+          break;
+      }
+      // $image = imagescale($image_file, $breakpoints[0]);
+      foreach($breakpoints as $breakpoint) {
+        Log::debug($breakpoint);
+      }
     }
 }

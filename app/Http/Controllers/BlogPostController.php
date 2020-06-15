@@ -19,12 +19,14 @@ class BlogPostController extends Controller
      */
     public function index()
     {
-      // Show list of blog posts with pagination
-      $blog_posts = DB::table('blog_posts')->orderBy('created_at', 'desc')->simplePaginate(10);
+        // Show list of blog posts with pagination
+        $blog_posts = DB::table('blog_posts')
+            ->orderBy('created_at', 'desc')
+            ->simplePaginate(10);
 
-      return view('blogposts.index', array(
-        'blog_posts' => $blog_posts
-      ));
+        return view('blogposts.index', [
+            'blog_posts' => $blog_posts,
+        ]);
     }
 
     /**
@@ -34,13 +36,13 @@ class BlogPostController extends Controller
      */
     public function create()
     {
-      // Show form for new blog post
-      $blog_post = new BlogPost();
-      $blog_post->online = 'offline';
+        // Show form for new blog post
+        $blog_post = new BlogPost();
+        $blog_post->online = 'offline';
 
-      return view('blogposts.create', array(
-        'blog_post' => $blog_post
-      ));
+        return view('blogposts.create', [
+            'blog_post' => $blog_post,
+        ]);
     }
 
     /**
@@ -51,22 +53,24 @@ class BlogPostController extends Controller
      */
     public function store(Request $request)
     {
-      // Create a new blog post
-      $blog_post = new BlogPost();
-      $blog_post->title = $request->title;
-      $blog_post->excerpt = $request->excerpt;
-      $blog_post->content = $request->content;
-      // TODO: Get user id from session
-      $blog_post->user_id = 1;
+        // Create a new blog post
+        $blog_post = new BlogPost();
+        $blog_post->title = $request->title;
+        $blog_post->excerpt = $request->excerpt;
+        $blog_post->content = $request->content;
+        // TODO: Get user id from session
+        $blog_post->user_id = 1;
 
-      // Check online | offline
-      if ($request->has('online'))
-      {
-        $blog_post->online = 'online';
-      }
-      $blog_post->save();
+        // Check online | offline
+        if ($request->has('online')) {
+            $blog_post->online = 'online';
+        }
+        $blog_post->save();
 
-      return redirect('admin/blogposts/')->with('status', 'Blog Post Created');
+        return redirect('admin/blogposts/')->with(
+            'status',
+            'Blog Post Created'
+        );
     }
 
     /**
@@ -77,7 +81,7 @@ class BlogPostController extends Controller
      */
     public function show($id)
     {
-      // Show single blog post stats
+        // Show single blog post stats
     }
 
     /**
@@ -88,11 +92,11 @@ class BlogPostController extends Controller
      */
     public function edit($id)
     {
-      // Show form for editing a blog post
-      $blog_post = BlogPost::find($id);
-      return view('blogposts.edit', array(
-        'blog_post' => $blog_post
-      ));
+        // Show form for editing a blog post
+        $blog_post = BlogPost::find($id);
+        return view('blogposts.edit', [
+            'blog_post' => $blog_post,
+        ]);
     }
 
     /**
@@ -104,47 +108,49 @@ class BlogPostController extends Controller
      */
     public function update(Request $request, $id)
     {
-      // Update a single blog post
-      $blog_post = BlogPost::find($id);
-      $blog_post->title = $request->title;
-      $blog_post->excerpt = $request->excerpt;
-      $blog_post->content = $request->content;
-      // TODO: Get user id from session
-      $blog_post->user_id = 1;
+        // Update a single blog post
+        $blog_post = BlogPost::find($id);
+        $blog_post->title = $request->title;
+        $blog_post->excerpt = $request->excerpt;
+        $blog_post->content = $request->content;
+        // TODO: Get user id from session
+        $blog_post->user_id = 1;
 
-      // Check online | offline
-      if ($request->has('online'))
-      {
-        $blog_post->online = 'online';
-      }
-      // Log::debug('blog post online '. $request->has('online'));
-
-      $blog_post->save();
-
-      // Files upload blog_file
-      if ($request->hasfile('blog_file')) {
-        foreach($request->file('blog_file') as $key => $blog_file) {
-          $blog_file->storeAs('public', $blog_file->getClientOriginalName());
-          // Store in DB
-          $file = File::create(array(
-            'file_name' => $blog_file->getClientOriginalName(),
-            'role' => $request->blog_file_role[$key],
-            'model_name' => 'BlogPost',
-            'model_id' => $blog_post->id,
-            'mimetype' => $blog_file->getClientMimeType(),
-            'priority' => $request->blog_file_priority[$key],
-            'file_size' => 'original'
-          ));
-          // Create image resize job
-          // FIXME: Add more mimetypes as well as upload validation
-          if ($file->mimetype == 'image/jpeg') {
-            ProcessImage::dispatch($file);
-          }
-          // Log::debug(join(',', $request->blog_file_role) .' - '. $key .' - '. $blog_file);
+        // Check online | offline
+        if ($request->has('online')) {
+            $blog_post->online = 'online';
         }
-      }
+        // Log::debug('blog post online '. $request->has('online'));
 
-      return redirect('admin/blogposts/')->with('status', 'Blog Post Updated');
+        $blog_post->save();
+
+        // Files upload blog_file
+        if ($request->hasfile('blog_file')) {
+            foreach ($request->file('blog_file') as $key => $blog_file) {
+                $path = $blog_file->store(env('IMAGE_THEME_FOLDER'));
+                // Store in DB
+                $file = File::create([
+                    'file_name' => $path,
+                    'role' => $request->blog_file_role[$key],
+                    'model_name' => 'BlogPost',
+                    'model_id' => $blog_post->id,
+                    'mimetype' => $blog_file->getClientMimeType(),
+                    'priority' => $request->blog_file_priority[$key],
+                    'file_size' => 'original',
+                ]);
+                // Create image resize job
+                // FIXME: Add more mimetypes as well as upload validation
+                if (in_array($blog_file->getClientMimeType(), ["image/jpeg"])) {
+                    ProcessImage::dispatch($file)->delay(now()->addMinutes(10));
+                }
+                // Log::debug($path);
+            }
+        }
+
+        return redirect('admin/blogposts/')->with(
+            'status',
+            'Blog Post Updated'
+        );
     }
 
     /**
