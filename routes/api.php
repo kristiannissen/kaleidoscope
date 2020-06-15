@@ -27,7 +27,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/activity/{model_id}', function ($model_id) {
     return new ActivityCollection(
         Activity::where('model_id', '=', $model_id)
-            ->orderBy('created_at')
+            ->orderBy('created_at', 'desc')
             ->get()
     );
 });

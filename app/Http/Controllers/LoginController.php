@@ -8,20 +8,19 @@ use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
-  // Show login screen
-  public function index()
-  {
-    return view('login');
-  }
-
-  public function authenticate(Request $request)
-  {
-    $credentials = $request->only('email', 'password');
-
-    if (Auth::attempt($credentials))
+    // Show login screen
+    public function index()
     {
-      return redirect()->intended('admin/dashboard/');
+        return view('login');
     }
-    return view('login');
-  }
+
+    public function authenticate(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            return redirect()->intended('admin/dashboard/');
+        }
+        return view('login');
+    }
 }
