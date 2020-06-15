@@ -41,6 +41,13 @@
 <div class="blog-post--post">
   <article class="blog-post" data-id="{{ $blog_post->id }}">
     <header class="blog-post--header">
+      <amp-img src="{{ asset($blog_post->heroImage()->breakpoint_640->image) }}"
+          height="{{ $blog_post->heroImage()->breakpoint_640->height }}"
+          width="{{ $blog_post->heroImage()->breakpoint_640->width }}"
+          layout="responsive"
+          srcset="{{ asset($blog_post->heroImage()->breakpoint_375->image) }} 375w,
+            {{ asset($blog_post->heroImage()->breakpoint_768->image) }} 768w,
+            {{ asset($blog_post->heroImage()->breakpoint_812->image) }} 812w "></amp-img>
       <h1 class="blog-post--title">{{ $blog_post->title }}</h1>
       <time class="blog-post--time"
         datetime="{{ $blog_post->online_at }}">

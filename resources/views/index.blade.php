@@ -30,7 +30,7 @@
       <article class="blog-post blog-post--first blog-post--index-{{ $loop->index }}"
         data-vars-article-id="{{ $post->id }}">
         <header class="blog-post--header">
-          <amp-img src="{{ asset('storage/'. $post->heroImage()->file_name) }}"
+          <amp-img src="{{ asset($post->heroImage()) }}"
             alt="Welcome" width="375" height="210"
             layout="responsive">
           </amp-img>

@@ -10,6 +10,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
+use Illuminate\Support\Facades\Cache;
 
 use Image;
 
@@ -46,12 +47,30 @@ class ProcessImage implements ShouldQueue
         list($file_name, $file_extension) = explode('.', $file_path);
         foreach ($breakpoints as $breakpoint) {
             $image_file = Image::make($file_path);
-            $image_file->resize($breakpoint, null);
+            $image_file->resize($breakpoint, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
 
             $file_resized =
-                $file_name . '_' . $breakpoint . '.' . $file_extension;
+                $file_name .
+                '_' .
+                $breakpoint .
+                '-' .
+                $image_file->height() .
+                '.' .
+                $file_extension;
 
             $image_file->save($file_resized);
+            $cache_key = 'image_'. $this->file->model_id .'_'. $breakpoint;
+
+            Cache::forget($cache_key);
+
+            Cache::put(
+                $cache_key,
+                $file_resized
+            );
+
+            Log::debug("File resized: $file_resized");
         }
     }
 }

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Log;
 
 use App\Jobs\ProcessImage;
 use App\BlogPost;
-use App\File;
+use App\File as ImageFile;
 
 class BlogPostController extends Controller
 {
@@ -120,7 +120,6 @@ class BlogPostController extends Controller
         if ($request->has('online')) {
             $blog_post->online = 'online';
         }
-        // Log::debug('blog post online '. $request->has('online'));
 
         $blog_post->save();
 
@@ -129,7 +128,7 @@ class BlogPostController extends Controller
             foreach ($request->file('blog_file') as $key => $blog_file) {
                 $path = $blog_file->store(env('IMAGE_THEME_FOLDER'));
                 // Store in DB
-                $file = File::create([
+                $file = ImageFile::create([
                     'file_name' => $path,
                     'role' => $request->blog_file_role[$key],
                     'model_name' => 'BlogPost',
@@ -138,12 +137,14 @@ class BlogPostController extends Controller
                     'priority' => $request->blog_file_priority[$key],
                     'file_size' => 'original',
                 ]);
+
+                Log::debug("File saved $file->id");
+
                 // Create image resize job
                 // FIXME: Add more mimetypes as well as upload validation
                 if (in_array($blog_file->getClientMimeType(), ["image/jpeg"])) {
                     ProcessImage::dispatch($file)->delay(now()->addMinutes(10));
                 }
-                // Log::debug($path);
             }
         }
 
