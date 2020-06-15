@@ -40,37 +40,47 @@ class ProcessImage implements ShouldQueue
      */
     public function handle()
     {
-        // Resize based on original
         $breakpoints = explode(',', env('IMAGE_BREAKPOINTS'));
-        $file_path = Storage::disk('local')->path($this->file->file_name);
+        $file_path = Storage::path($this->file->file_name);
 
-        list($file_name, $file_extension) = explode('.', $file_path);
         foreach ($breakpoints as $breakpoint) {
             $image_file = Image::make($file_path);
             $image_file->resize($breakpoint, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
 
-            $file_resized =
-                $file_name .
-                '_' .
-                $breakpoint .
-                '-' .
-                $image_file->height() .
-                '.' .
-                $file_extension;
-
-            $image_file->save($file_resized);
-            $cache_key = 'image_'. $this->file->model_id .'_'. $breakpoint;
-
-            Cache::forget($cache_key);
-
-            Cache::put(
-                $cache_key,
-                $file_resized
+            list($file_name_orig, $file_extension) = explode(
+                '.',
+                basename($file_path)
             );
 
-            Log::debug("File resized: $file_resized");
+            $file_name_new =
+                dirname($file_path) .
+                "/" .
+                $file_name_orig .
+                "_" .
+                $breakpoint .
+                "_" .
+                $image_file->height() .
+                "." .
+                $file_extension;
+
+            $image_file->save($file_name_new);
+
+            $cache_key = "image_" . $this->file->model_id . "_" . $breakpoint;
+
+            Cache::forget($cache_key);
+            Cache::put(
+                $cache_key,
+                Storage::url(
+                    "theme_images/" .
+                        $file_name_orig .
+                        "-" .
+                        $image_file->height() .
+                        "." .
+                        $file_extension
+                )
+            );
         }
     }
 }

@@ -138,8 +138,6 @@ class BlogPostController extends Controller
                     'file_size' => 'original',
                 ]);
 
-                Log::debug("File saved $file->id");
-
                 // Create image resize job
                 // FIXME: Add more mimetypes as well as upload validation
                 if (in_array($blog_file->getClientMimeType(), ["image/jpeg"])) {

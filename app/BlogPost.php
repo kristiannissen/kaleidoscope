@@ -60,41 +60,4 @@ class BlogPost extends Model
     {
         return $query->where('online', '=', 'online');
     }
-    // Hero Image
-    public function heroImage()
-    {
-        $hero_image = File::where(
-            [['model_id', '=', $this->id]],
-            ['model_name', '=', 'BlogPost']
-        )
-            ->orderBy('created_at', 'asc')
-            ->first();
-        $breakpoints = explode(',', env('IMAGE_BREAKPOINTS'));
-
-        $props = array(
-          'original' => Storage::url($hero_image->file_name),
-        );
-        foreach($breakpoints as $breakpoint) {
-          $cached_file = Cache::get('image_'. $this->id .'_'. $breakpoint);
-          // _375-250.jpeg
-          $matches = array();
-          preg_match("/(\d+)-(\d+)/", $cached_file, $matches);
-          $props['breakpoint_'. $breakpoint] = (object) array(
-            'width' => $matches[1],
-            'height' => $matches[2],
-            'image' => "storage/". strstr($cached_file, "theme_image")
-          );
-        }
-        return (object) $props;
-    }
-    // Slides
-    public function slides()
-    {
-        return File::where([
-            ['model_id', '=', $this->id],
-            ['model_name', '=', 'BlogPost'],
-        ])
-            ->orderBy('priority')
-            ->get();
-    }
 }
