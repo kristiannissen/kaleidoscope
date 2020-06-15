@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
 
 use App\Activity;
 use App\File;
@@ -16,13 +17,7 @@ class BlogPost extends Model
     protected static function booted()
     {
         static::creating(function ($model) {
-            $text = preg_replace('~[^\pL\d]+~u', '-', $model->title);
-            $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
-            $text = $text = preg_replace('~[^-\w]+~', '', $text);
-            $text = trim($text, '-');
-            $text = preg_replace('~-+~', '-', $text);
-
-            $model->slug = strtolower($text);
+            $model->slug = Str::slug($model->title);
 
             if ($model->online == 'online') {
                 $model->online_at = now();
@@ -41,10 +36,10 @@ class BlogPost extends Model
             // Store the activity if any changes where made
             if (count($data) > 0) {
                 Activity::create([
-                    'user_name' => 'John Do',
+                    'user_name' => $model->user->name,
                     'user_id' => 1,
                     'model' => 'BlogPost',
-                    'model_id' => $model->id,
+                    'model_id' => $model->user->id,
                     'data' => json_encode($data),
                 ]);
             }

@@ -59,7 +59,7 @@ class BlogPostController extends Controller
         $blog_post->excerpt = $request->excerpt;
         $blog_post->content = $request->content;
         // TODO: Get user id from session
-        $blog_post->user_id = 1;
+        $blog_post->user_id = $request->user()->id;
 
         // Check online | offline
         if ($request->has('online')) {
@@ -113,8 +113,7 @@ class BlogPostController extends Controller
         $blog_post->title = $request->title;
         $blog_post->excerpt = $request->excerpt;
         $blog_post->content = $request->content;
-        // TODO: Get user id from session
-        $blog_post->user_id = 1;
+        $blog_post->user_id = $request->user()->id;
 
         // Check online | offline
         if ($request->has('online')) {

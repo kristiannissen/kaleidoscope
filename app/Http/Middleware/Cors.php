@@ -16,6 +16,9 @@ class Cors
     public function handle($request, Closure $next)
     {
         // Enable CORS headers
-        return $next($request);
+      return $next($request)
+        ->header('Access-Control-Allow-Origin', '*')
+        ->header('Access-Control-Allow-Methods', 'GET')
+        ->header('Access-Controll-Allow-Headers', 'X-Requested-With, Content-Type, X-Token-Auth, Authorization');
     }
 }
