@@ -23,6 +23,7 @@
               <a class="mdl-navigation__link" href="/admin/blogposts/">Blogposts</a>
               <a class="mdl-navigation__link" href="/admin/blogposts/create/">New Blog Posts</a>
               <a class="mdl-navigation__link" href="">Settings</a>
+              <a class="mdl-navigation__link" href="/logout/">Logout</a>
             </nav>
           </div>
           <main class="mdl-layout__content">

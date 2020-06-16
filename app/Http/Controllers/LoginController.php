@@ -19,8 +19,14 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('admin/dashboard/');
+            return redirect()->intended('/admin/dashboard/');
         }
-        return view('login');
+        return redirect('/login/');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect('/login/');
     }
 }
