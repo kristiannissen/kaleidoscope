@@ -22,13 +22,6 @@ Route::get('login', 'LoginController@index');
 Route::post('/login/', 'LoginController@authenticate');
 Route::get('logout', 'LoginController@logout');
 // Admin
-/*
-Route::prefix('admin')->group(function() {
-  Route::resource('/blogposts', 'BlogPostController');
-  Route::view('/dashboard', 'dashboard');
-})->middleware('checkauth');
- */
-
 Route::group(['middleware' => 'checkauth', 'prefix' => 'admin'], function(){
   Route::resource('/blogposts', 'BlogPostController');
   Route::view('/dashboard', 'dashboard');
