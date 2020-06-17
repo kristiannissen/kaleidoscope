@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
+use App\Repositories\BlogPostRepositoryInterface;
+use App\Repositories\BlogPostRepository;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -17,7 +20,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+      //
+      $this->app->bind(BlogPostRepositoryInterface::class, BlogPostRepository::class);
     }
 
     /**
