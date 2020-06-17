@@ -24,8 +24,10 @@
   <!-- Template //-->
   <div class="mdl-grid mdl-grid--no-spacing file_template">
     <div class="mdl-cell mdl-cell--6-col">
-      <input class="mdl-textfield__input" type="file"
-        value="{{ $blog_post->theme_image }}" name="blog_file[]">
+      <div class="mld-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="file"
+          value="{{ $blog_post->theme_image }}" name="blog_file[]">
+      </div>
     </div>
     <div class="mdl-cell mdl-cell--4-col">
       <select name="blog_file_role[]">
@@ -34,12 +36,12 @@
       </select>
     </div>
     <div class="mdl-cell mdl-cell--2-col">
-      <div class="mld-textfield mdl-js-textfield">
+      <div class="mld-textfield mdl-js-textfield">        
         <input class="mdl-textfield__input" type="text"
           id="blog_file_priority"
           value="1" name="blog_file_priority[]">
         <label
-          class="mdl-textfield__label"
+          class="textfield__label"
           for="blog_file_priority">Priority</label>
       </div>
     </div>

@@ -45,6 +45,12 @@ class BlogPost extends Model
             }
         });
     }
+    // Has files
+    public function mediaFiles()
+    {
+      return File::where('model_name', '=', 'BlogPost')
+        ->where('model_id', '=', $this->id);
+    }
     // Set relationship to User
     public function user()
     {

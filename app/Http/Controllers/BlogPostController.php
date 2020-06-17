@@ -58,7 +58,6 @@ class BlogPostController extends Controller
         $blog_post->title = $request->title;
         $blog_post->excerpt = $request->excerpt;
         $blog_post->content = $request->content;
-        // TODO: Get user id from session
         $blog_post->user_id = $request->user()->id;
 
         // Check online | offline
@@ -66,6 +65,29 @@ class BlogPostController extends Controller
             $blog_post->online = 'online';
         }
         $blog_post->save();
+
+        if ($request->hasfile('blog_file')) {
+          foreach ($request->file('blog_file') as $key => $blog_file) {
+            $path = $blog_file->store(env('IMAGE_THEME_FOLDER'));
+
+            // Store in DB
+            $file = ImageFile::create([
+                'file_name' => $path,
+                'role' => $request->blog_file_role[$key],
+                'model_name' => 'BlogPost',
+                'model_id' => $blog_post->id,
+                'mimetype' => $blog_file->getClientMimeType(),
+                'priority' => $request->blog_file_priority[$key],
+                'file_size' => 'original',
+            ]);
+
+            // Create image resize job
+            // FIXME: Add more mimetypes as well as upload validation
+            if (in_array($blog_file->getClientMimeType(), ["image/jpeg"])) {
+                ProcessImage::dispatchAfterResponse($file);
+            }
+          }
+        }
 
         return redirect('admin/blogposts/')->with(
             'status',
@@ -124,14 +146,13 @@ class BlogPostController extends Controller
 
         // Files upload blog_file
         if (
-            $request->hasfile('blog_file') &&
-            $request->file('blog_file')->isValid()
+            $request->hasfile('blog_file')
         ) {
             foreach ($request->file('blog_file') as $key => $blog_file) {
                 $path = $blog_file->store(env('IMAGE_THEME_FOLDER'));
 
                 // Store in DB
-                ImageFile::create([
+                $file = ImageFile::create([
                     'file_name' => $path,
                     'role' => $request->blog_file_role[$key],
                     'model_name' => 'BlogPost',
