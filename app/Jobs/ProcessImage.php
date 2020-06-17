@@ -20,17 +20,16 @@ class ProcessImage implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $file;
+    protected $image_file;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(ImageFile $file)
+    public function __construct(ImageFile $image_file)
     {
         // File model
-        $this->file = $file;
-        // Log::debug('file added '. $this->file->id);
+        $this->image_file = $image_file;
     }
 
     /**
@@ -41,46 +40,31 @@ class ProcessImage implements ShouldQueue
     public function handle()
     {
         $breakpoints = explode(',', env('IMAGE_BREAKPOINTS'));
-        $file_path = Storage::path($this->file->file_name);
+        $file_path = Storage::path($this->image_file->file_name);
+        list($file_name, $file_extension) = explode(".", $file_path);
 
         foreach ($breakpoints as $breakpoint) {
-            $image_file = Image::make($file_path);
-            $image_file->resize($breakpoint, null, function ($constraint) {
+            $image = Image::make($file_path);
+            $image->resize($breakpoint, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
+            $image_file_name =
+                $file_name . "_" . $breakpoint . "." . $file_extension;
 
-            list($file_name_orig, $file_extension) = explode(
-                '.',
-                basename($file_path)
-            );
+            if (Storage::exists($image_file_name)) {
+                Storage::delete($image_file_name);
+            }
+            $image->save($image_file_name);
 
-            $file_name_new =
-                dirname($file_path) .
-                "/" .
-                $file_name_orig .
-                "_" .
-                $breakpoint .
-                "_" .
-                $image_file->height() .
-                "." .
-                $file_extension;
-
-            $image_file->save($file_name_new);
-
-            $cache_key = "image_" . $this->file->model_id . "_" . $breakpoint;
-
-            Cache::forget($cache_key);
-            Cache::put(
-                $cache_key,
-                Storage::url(
-                    "theme_images/" .
-                        $file_name_orig .
-                        "-" .
-                        $image_file->height() .
-                        "." .
-                        $file_extension
-                )
-            );
+            ImageFile::create([
+                'file_name' => $image_file_name,
+                'role' => $this->image_file->role,
+                'model_name' => $this->image_file->model_name,
+                'model_id' => $this->image_file->model_id,
+                'mimetype' => $this->image_file->mimetype,
+                'priority' => $this->image_file->priority + 1,
+                'file_size' => $breakpoint . "-" . $image->height(),
+            ]);
         }
     }
 }

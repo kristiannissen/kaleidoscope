@@ -37,9 +37,9 @@ class BlogPost extends Model
             if (count($data) > 0) {
                 Activity::create([
                     'user_name' => $model->user->name,
-                    'user_id' => 1,
+                    'user_id' => $model->user->id,
                     'model' => 'BlogPost',
-                    'model_id' => $model->user->id,
+                    'model_id' => $model->id,
                     'data' => json_encode($data),
                 ]);
             }

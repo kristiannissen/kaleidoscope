@@ -123,11 +123,15 @@ class BlogPostController extends Controller
         $blog_post->save();
 
         // Files upload blog_file
-        if ($request->hasfile('blog_file')) {
+        if (
+            $request->hasfile('blog_file') &&
+            $request->file('blog_file')->isValid()
+        ) {
             foreach ($request->file('blog_file') as $key => $blog_file) {
                 $path = $blog_file->store(env('IMAGE_THEME_FOLDER'));
+
                 // Store in DB
-                $file = ImageFile::create([
+                ImageFile::create([
                     'file_name' => $path,
                     'role' => $request->blog_file_role[$key],
                     'model_name' => 'BlogPost',
@@ -140,7 +144,7 @@ class BlogPostController extends Controller
                 // Create image resize job
                 // FIXME: Add more mimetypes as well as upload validation
                 if (in_array($blog_file->getClientMimeType(), ["image/jpeg"])) {
-                    ProcessImage::dispatch($file)->delay(now()->addMinutes(10));
+                    ProcessImage::dispatchAfterResponse($file);
                 }
             }
         }

@@ -17,7 +17,6 @@ class CheckAuth
      */
     public function handle($request, Closure $next)
     {
-        Log::debug('middleware checkauth ' . Auth::check());
         if (!Auth::check()) {
             return redirect('/login/');
         }
