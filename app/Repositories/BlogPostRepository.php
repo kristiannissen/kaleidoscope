@@ -1,22 +1,23 @@
 <?php
 
 namespace App\Repositories;
+
 use Illuminate\Support\Facades\Log;
 
 use App\BlogPost;
 
 class BlogPostRepository implements BlogPostRepositoryInterface
 {
-    protected $model;
+  protected $model;
 
     public function __construct(BlogPost $model)
     {
-        $this->model = $model;
+      $this->model = $model;
     }
 
     public function find(string $slug)
     {
-        Log::debug('Returning from repository');
+        Log::debug('Returning from repository '. $this->model->id);
         return $this->model->where('slug', '=', $slug)->first();
     }
 }

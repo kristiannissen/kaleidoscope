@@ -49,7 +49,7 @@ class BlogPost extends Model
     public function mediaFiles()
     {
       return File::where('model_name', '=', 'BlogPost')
-        ->where('model_id', '=', $this->id);
+        ->where('model_id', '=', $this->id)->get();
     }
     // Set relationship to User
     public function user()

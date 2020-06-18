@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 use App\Repositories\BlogPostRepositoryInterface;
-use App\Repositories\BlogPostRepository;
+use App\Repositories\BlogPostCacheRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
       //
-      $this->app->bind(BlogPostRepositoryInterface::class, BlogPostRepository::class);
+      $this->app->bind(BlogPostRepositoryInterface::class, BlogPostCacheRepository::class);
     }
 
     /**
