@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Cache;
 
 use Image;
 
+use App\Events\ImageProcessed;
 use App\File as ImageFile;
 
 class ProcessImage implements ShouldQueue
@@ -66,5 +67,7 @@ class ProcessImage implements ShouldQueue
                 'file_size' => $breakpoint . "-" . $image->height(),
             ]);
         }
+
+        event(new ImageProcessed($this->image_file));
     }
 }

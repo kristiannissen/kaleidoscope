@@ -18,6 +18,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        ImageProcessed::class => [
+          SendImageProcessedNotification::class,
+        ],
     ];
 
     /**
@@ -30,5 +33,11 @@ class EventServiceProvider extends ServiceProvider
         parent::boot();
 
         //
+    }
+
+    //
+    public function shouldDiscoverEvents()
+    {
+      return true;
     }
 }
