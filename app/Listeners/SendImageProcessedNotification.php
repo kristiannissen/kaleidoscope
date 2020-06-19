@@ -7,6 +7,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
 
 use App\Events\ImageProcessed;
+use App\File as ImageFile;
 
 class SendImageProcessedNotification
 {
@@ -29,6 +30,7 @@ class SendImageProcessedNotification
     public function handle(ImageProcessed $event)
     {
       //
-      Log::debug("Sending notification");
+      $files_count = ImageFile::where('model_id', '=', $event->image_file->model_id)->count();
+      Log::debug("$files_count files created");
     }
 }
