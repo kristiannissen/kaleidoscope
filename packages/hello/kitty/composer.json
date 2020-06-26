@@ -1,0 +1,19 @@
+{
+    "name": "hello/kitty",
+    "description": "A package for Kitties",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kristian Nissen",
+            "email": "kristian.nissen@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+      "psr-4": {
+        "Hello\\Kitty\\": "src/"
+      }
+    },
+    "require": {}
+}

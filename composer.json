@@ -36,7 +36,8 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Hello\\Kitty\\": "packages/hello/kitty/src"
         },
         "classmap": [
             "database/seeds",
