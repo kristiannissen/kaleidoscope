@@ -25,6 +25,18 @@ class BlogPostRepository implements BlogPostRepositoryInterface
                 ->where('model_id', '=', $this->model->id)
                 ->where('file_size', '!=', 'original')
                 ->get();
+            $blog_post_images = [
+              'hero_images' => [],
+              'slider_images' => []
+            ];
+            foreach ($image_files as $image_file) {
+              if ($image_file->role == 'hero_image') {
+                array_push($blog_post_images['hero_images'], [
+                  'breakpoint_'. $image_file->file_size =>
+                  $image_file->file_name
+                ]);
+              }
+            }
             return $this->model;
         });
         return $blog_post;

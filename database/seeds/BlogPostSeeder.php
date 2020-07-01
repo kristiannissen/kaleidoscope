@@ -12,7 +12,7 @@ class BlogPostSeeder extends Seeder
     public function run()
     {
       //
-      factory(App\BlogPost::class, 50)->create()->each(
+      factory(App\BlogPost::class, 10)->create()->each(
         function($blog_post)
         {
           $blog_post->save();
