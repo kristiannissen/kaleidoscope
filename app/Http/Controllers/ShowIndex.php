@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
 use App\BlogPost;
-use Hello\Kitty\HelloKitty;
 
 class ShowIndex extends Controller
 {
@@ -19,7 +18,6 @@ class ShowIndex extends Controller
      */
     public function __invoke(Request $request)
     {
-      Log::debug('Hello Kitty says ' . HelloKitty::says(false));
         // Show latest blog post
         $blog_posts = BlogPost::latest()
             ->limit(10)
