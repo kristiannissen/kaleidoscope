@@ -53,7 +53,8 @@ class ProcessImage implements ShouldQueue
                 $file_name . "_" . $breakpoint . "." . $file_extension;
 
             if (Storage::exists($image_file_name)) {
-                Storage::delete($image_file_name);
+              // FIXME: Appears not to be working
+              Storage::delete($image_file_name);
             }
             $image->save($image_file_name);
 
