@@ -37,6 +37,7 @@ class BlogPostRepository implements BlogPostRepositoryInterface
                 ]);
               }
             }
+            $this->model->hero_images = $blog_post_images['hero_images'];
             return $this->model;
         });
         return $blog_post;
