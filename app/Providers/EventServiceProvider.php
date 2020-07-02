@@ -21,6 +21,9 @@ class EventServiceProvider extends ServiceProvider
         ImageProcessed::class => [
           SendImageProcessedNotification::class,
         ],
+        PageViewed::class => [
+          StorePageView::class,
+        ],
     ];
 
     /**

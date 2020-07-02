@@ -59,10 +59,8 @@ Route::get('latest-blogposts', function() {
       ->get()
   );
 })->middleware('cors');
-
-Route::post('tracker/{random_id}/', function($random_id) {
-  return 'hello '. $random_id;
-});
+// Route::get('login', 'LoginController@index');
+Route::post('tracker/{random_id}/', 'API\AnalyticsController@store');
 
 Route::post('error/{random_id}/', function($random_id) {
   return 'hello '. $random_id;
