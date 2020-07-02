@@ -26,8 +26,8 @@ class ImageProcessed
 
     public function __construct(ImageFile $image_file)
     {
-      //
-      $this->image_file = $image_file;
+        //
+        $this->image_file = $image_file;
     }
 
     /**

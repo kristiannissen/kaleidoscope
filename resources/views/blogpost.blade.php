@@ -72,42 +72,32 @@
 
 @section('custom_scripts')
 <amp-analytics>
-  <script type="application/json">
-    {
-      "requests": {
-        "pageview": "/api/tracker/RANDOM/?event=${eventName}&id=${elementId}&type=${elementType}",
-        "error": "/api/errors/RANDOM/"
-      },
-      "triggers": {
-        "trackPageview": {
-          "on": "visible",
-          "request": "pageview",
-          "vars": {
-            "eventName": "pageview",
-            "elementId": "{{ $blog_post->id }}",
-            "elementType": "BlogPost"
-          }
-        },
-        "trackClick": {
-          "on": "click",
-          "request": "pageview",
-          "selector": "[data-vars-article-id]",
-          "vars": {
-            "eventName": "clickevent",
-            "elementId": "${articleId}",
-            "elementType": "BlogPost"
-          }
-        },
-        "userError": {
-          "on": "user-error",
-          "request": "error"
+<script type="application/json">
+  {
+    "requests": {
+      "pageview": "/api/tracker/RANDOM/?event=${eventName}&id=${elementId}&type=${elementType}",
+      "error": "/api/errors/RANDOM/"
+    },
+    "triggers": {
+      "trackPageview": {
+        "on": "visible",
+        "request": "pageview",
+        "vars": {
+          "eventName": "pageview",
+          "elementId": "{{ $blog_post->id }}",
+          "elementType": "BlogPost"
         }
       },
-      "transport": {
-        "xhrpost": true,
-        "useBody": true
-      }  
-    }
-  </script>
+      "userError": {
+        "on": "user-error",
+        "request": "error"
+      }
+    },
+    "transport": {
+      "xhrpost": true,
+      "useBody": true
+    }  
+  }
+</script>
 </amp-analytics>
 @endsection

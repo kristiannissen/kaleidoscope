@@ -29,8 +29,12 @@ class SendImageProcessedNotification
      */
     public function handle(ImageProcessed $event)
     {
-      //
-      $files_count = ImageFile::where('model_id', '=', $event->image_file->model_id)->count();
-      Log::debug("$files_count files created");
+        //
+        $files_count = ImageFile::where(
+            'model_id',
+            '=',
+            $event->image_file->model_id
+        )->count();
+        Log::debug("$files_count files created");
     }
 }
