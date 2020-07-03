@@ -67,26 +67,26 @@ class BlogPostController extends Controller
         $blog_post->save();
 
         if ($request->hasfile('blog_file')) {
-          foreach ($request->file('blog_file') as $key => $blog_file) {
-            $path = $blog_file->store(env('IMAGE_THEME_FOLDER'));
+            foreach ($request->file('blog_file') as $key => $blog_file) {
+                $path = $blog_file->store(env('IMAGE_THEME_FOLDER'));
 
-            // Store in DB
-            $file = ImageFile::create([
-                'file_name' => $path,
-                'role' => $request->blog_file_role[$key],
-                'model_name' => 'BlogPost',
-                'model_id' => $blog_post->id,
-                'mimetype' => $blog_file->getClientMimeType(),
-                'priority' => $request->blog_file_priority[$key],
-                'file_size' => 'original',
-            ]);
+                // Store in DB
+                $file = ImageFile::create([
+                    'file_name' => basename($path),
+                    'role' => $request->blog_file_role[$key],
+                    'model_name' => 'BlogPost',
+                    'model_id' => $blog_post->id,
+                    'mimetype' => $blog_file->getClientMimeType(),
+                    'priority' => $request->blog_file_priority[$key],
+                    'file_size' => 'original',
+                ]);
 
-            // Create image resize job
-            // FIXME: Add more mimetypes as well as upload validation
-            if (in_array($blog_file->getClientMimeType(), ["image/jpeg"])) {
-                ProcessImage::dispatchAfterResponse($file);
+                // Create image resize job
+                // FIXME: Add more mimetypes as well as upload validation
+                if (in_array($blog_file->getClientMimeType(), ["image/jpeg"])) {
+                    ProcessImage::dispatchAfterResponse($file);
+                }
             }
-          }
         }
 
         return redirect('admin/blogposts/')->with(
@@ -145,15 +145,13 @@ class BlogPostController extends Controller
         $blog_post->save();
 
         // Files upload blog_file
-        if (
-            $request->hasfile('blog_file')
-        ) {
+        if ($request->hasfile('blog_file')) {
             foreach ($request->file('blog_file') as $key => $blog_file) {
                 $path = $blog_file->store(env('IMAGE_THEME_FOLDER'));
 
                 // Store in DB
                 $file = ImageFile::create([
-                    'file_name' => $path,
+                    'file_name' => basename($path),
                     'role' => $request->blog_file_role[$key],
                     'model_name' => 'BlogPost',
                     'model_id' => $blog_post->id,
