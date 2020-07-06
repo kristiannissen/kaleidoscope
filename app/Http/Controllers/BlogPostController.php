@@ -147,7 +147,7 @@ class BlogPostController extends Controller
         // Files upload blog_file
         if ($request->hasfile('blog_file')) {
             foreach ($request->file('blog_file') as $key => $blog_file) {
-                $path = $blog_file->store(env('IMAGE_THEME_FOLDER'));
+                $path = $blog_file->store(env('IMAGE_FOLDER'));
 
                 // Store in DB
                 $file = ImageFile::create([

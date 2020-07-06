@@ -22,6 +22,7 @@ class ProcessImage implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $image_file;
+    protected $image_breakpoints;
     /**
      * Create a new job instance.
      *
@@ -31,6 +32,7 @@ class ProcessImage implements ShouldQueue
     {
         // File model
         $this->image_file = $image_file;
+        $this->image_breakpoints = explode(',', env('IMAGE_BREAKPOINTS'));
     }
 
     /**
@@ -40,8 +42,36 @@ class ProcessImage implements ShouldQueue
      */
     public function handle()
     {
-      // Handle file resize
-      Log::debug('hey hey');
-        // event(new ImageProcessed($this->image_file));
+        // Handle file resize
+        $file_path = storage_path(
+            env('IMAGE_FOLDER') .
+                DIRECTORY_SEPARATOR .
+                $this->image_file->file_name
+        );
+        list($file_name, $file_extension) = explode(
+            '.',
+            $this->image_file->file_name
+        );
+        Log::debug('file path ' . $file_name);
+        $image = Image::make($file_path);
+        foreach ($this->image_breakpoints as $breakpoint) {
+            Log::debug('image size ' . $breakpoint);
+            $image->resize($breakpoint, null, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            });
+            $image->save(
+                storage_path(
+                    env('IMAGE_FOLDER') .
+                        DIRECTORY_SEPARATOR .
+                        $file_name .
+                        '-' .
+                        $breakpoint,
+                    100,
+                    $file_extension
+                )
+            );
+        }
+        event(new ImageProcessed($this->image_file));
     }
 }
