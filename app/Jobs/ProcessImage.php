@@ -40,7 +40,8 @@ class ProcessImage implements ShouldQueue
      */
     public function handle()
     {
-        // Handle file resize
+      // Handle file resize
+      Log::debug('hey hey');
         // event(new ImageProcessed($this->image_file));
     }
 }
