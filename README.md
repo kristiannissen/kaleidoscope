@@ -11,3 +11,5 @@ composer dump-autoload
 php artisan db:seed // Run seeders
 php artisan db:seed --class=UserSeeder // Run specific seeder
 php artisan migrate:fresh --seed // Drop DB, run migrations and seeders
+
+### More
